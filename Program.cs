@@ -76,6 +76,9 @@ namespace ProgrammeDeGestionDeCommandeDeChocolat
             ServicesLogs.ClassNLogJournalisation.LogToJournalFile(arrayOfEtape[5]);
             ProgrammeDeGestionDeCommandeDeChocolatCore.ProgrammeCore.connexion();
             Console.Read();
+
+
+
         }
     }
 }
