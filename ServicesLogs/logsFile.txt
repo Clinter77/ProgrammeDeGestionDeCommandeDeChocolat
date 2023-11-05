@@ -143,3 +143,32 @@ ajout de l'administrateur ayant pour login Test et pour password Password@123
 Etape de connexion - 05/11/2023 11:06:45
 ******************************************************************************************************************
 
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 05/11/2023 12:23:42
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 05/11/2023 12:23:42
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 05/11/2023 12:23:45
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login Toto et pour password TotoPass@
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 05/11/2023 12:24:17
+******************************************************************************************************************
+
