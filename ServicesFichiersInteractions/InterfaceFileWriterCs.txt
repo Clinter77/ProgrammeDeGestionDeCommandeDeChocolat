@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ServicesFichiersInteractions
+{
+    internal interface InterfaceFileWriter
+    {
+        /// <summary>
+        /// Mise en place du singleton
+        /// </summary>
+        private static FileWriter instance = null;
+        private static readonly object lockObject = new object();
+        public static FileWriter Instance
+        {
+            get
+            {
+                lock (lockObject)
+                {
+                    if (instance == null)
+                    {
+                        instance = new FileWriter();
+                    }
+                    return instance;
+                }
+            }
+        }
+        /// <summary>
+        /// On ne peut pas l'instancier car il est en private. C'est pour forcer à utiliser le singleton
+        /// </summary>
+        private FileWriter() { }
+        /// <summary>
+        /// Exemple avec singleton
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        public async Task WriteToFile(string filePath, string content)
+        {
+            lock (lockObject)
+            {
+
+                using (StreamWriter writer = new StreamWriter(filePath, false))
+                {
+                    try
+                    {
+                        //writer.WriteAsync(string.Empty);
+                        writer.WriteLineAsync(content);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+
+                }
+            }
+        }
+
+        public void WriteToFile(string filePath, string content, bool append)
+        {
+            lock (lockObject)
+            {
+
+                using (StreamWriter writer = new StreamWriter(filePath, append))
+                {
+                    try
+                    {
+                        writer.WriteLineAsync((string)content);
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+
+                }
+            }
+        }
+
+        public bool FileExiste(string filePath)
+        {
+            return File.Exists(filePath);
+        }
+    }
+}

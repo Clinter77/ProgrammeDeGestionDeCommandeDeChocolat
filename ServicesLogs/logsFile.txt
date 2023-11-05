@@ -1,0 +1,145 @@
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 05/11/2023 10:47:03
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 05/11/2023 10:47:03
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 05/11/2023 10:47:04
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login Christophe et pour password PasswordChristophe@1234567
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 05/11/2023 10:47:39
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 05/11/2023 10:55:22
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 05/11/2023 10:55:22
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 05/11/2023 10:55:23
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login Test et pour password Password@123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 05/11/2023 10:55:48
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 05/11/2023 10:58:14
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 05/11/2023 10:58:14
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 05/11/2023 10:58:16
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login Test et pour password ssword@123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 05/11/2023 10:58:41
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 05/11/2023 10:59:52
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 05/11/2023 10:59:52
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 05/11/2023 10:59:53
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login Test et pour password Password@123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 05/11/2023 11:00:23
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 05/11/2023 11:03:13
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 05/11/2023 11:03:13
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 05/11/2023 11:03:14
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login Test et pour password Password@123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 05/11/2023 11:06:45
+******************************************************************************************************************
+

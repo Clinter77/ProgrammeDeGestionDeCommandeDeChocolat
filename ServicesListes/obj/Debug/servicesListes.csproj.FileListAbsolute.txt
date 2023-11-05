@@ -1,0 +1,6 @@
+C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\servicesListes\bin\Debug\servicesListes.dll
+C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\servicesListes\bin\Debug\servicesListes.pdb
+C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\servicesListes\obj\Debug\servicesListes.csproj.AssemblyReference.cache
+C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\servicesListes\obj\Debug\servicesListes.csproj.CoreCompileInputs.cache
+C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\servicesListes\obj\Debug\servicesListes.dll
+C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\servicesListes\obj\Debug\servicesListes.pdb

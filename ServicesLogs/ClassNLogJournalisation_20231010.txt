@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using NLog;
+
+namespace ServicesLogs
+{
+    public class ClassNLogJournalisation
+    {
+        // public static Logger logger = LogManager.GetCurrentClassLogger();
+        FileStream aFile;
+        static string filePath = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\logsFile.log"; // path to file
+
+        public static void logToJournalFile(string arrayOfEtape)
+        {
+            /* 
+            logger.Trace("Sample trace message");
+            logger.Debug("Sample debug message");
+            logger.Info("Sample informational message");
+            logger.Warn("Sample warning message");
+            logger.Error("Sample error message");
+            logger.Fatal("Sample fatal error message");
+             */
+            // 
+            using (FileStream aFile = new FileStream(filePath, FileMode.Append, FileAccess.Write))
+            using (StreamWriter sw = new StreamWriter(aFile))
+            {
+                sw.WriteLine("*****");
+                sw.WriteLine(arrayOfEtape);
+                sw.WriteLine("tata");
+                sw.WriteLine("titi");
+                sw.WriteLine("tutu");
+                sw.WriteLine("*****");
+            }
+
+        }
+    }
+}

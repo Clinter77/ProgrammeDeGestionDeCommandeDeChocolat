@@ -1,0 +1,121 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Models;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
+
+namespace ServicesFichiersInteractions
+{
+    public class FileWriter
+    {
+
+        // sur mon poste chez-moi
+        static string filePathArticles = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
+        static string filePathAdmins = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Models\comptesAdmins.json"; // path to file
+
+        // sur le PC Mewo
+        // static string filePathArticles = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
+        // static string filePathAdmins = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Models\comptesAdmins.json"; // path to file
+
+
+        /// <summary>
+        /// Initialisation des articles en BDD (fichier JSON)
+        /// </summary>
+        /// <param name="arrayOfArticles"></param>
+        /// <returns>void</returns>
+        public static void CreateTableaudArticles(List<Articles> arrayOfArticles)
+        {
+            try
+            {
+                string jsonArrayOfArticles = arrayOfArticles.ToString();
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamWriter sw = new StreamWriter(filePathArticles))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, arrayOfArticles);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("e\t" + e.Message);
+            }
+            
+        }
+
+        /// <summary>
+        /// Ajout d'un aministrateur en BDD (fichier JSON)
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns>void</returns>
+        public static void CreateAdmin(string login, string password)
+        {
+            // Charger les administrateurs existants depuis le fichier JSON
+            List<Administrateurs> admins = LoadAdminsFromJson(filePathAdmins);
+            Administrateurs administrateur = new Administrateurs(login, password);
+
+            if (admins.Count == 0)
+            {
+                // Si le fichier est vide, je créé un nouvel administrateur vierge
+                Administrateurs defaultAdministrateur = new Administrateurs
+                {
+                    Login = "",
+                    Password = ""
+                };
+
+                // Ajouter le nouvel utilisateur à la liste
+                admins.Add(defaultAdministrateur);
+
+                // Sauvegarder la liste mise à jour dans le fichier JSON
+                SaveAdminsToJson(admins, filePathAdmins);
+            }
+            else 
+            {
+                // Ajouter le nouvel administrateur à la liste
+                admins.Add(administrateur);
+
+                // Sauvegarder la liste mise à jour dans le fichier JSON
+                SaveAdminsToJson(admins, filePathAdmins);
+            }
+
+            // Afficher les administrateurs mis à jour
+            Console.WriteLine("administrateurs mis à jour :");
+            foreach (Administrateurs admin in admins)
+            {
+                Console.WriteLine($"Id: {admin.Id}, Login: {admin.Login}, Password: {admin.Password}");
+            }
+
+            // Avant de fermer la console
+            Console.WriteLine("Appuyez sur une entrée pour fermer la console.");
+            Console.ReadKey();
+        }
+
+        static List<Administrateurs> LoadAdminsFromJson(string filePathAdmins)
+        {
+            List<Administrateurs> users = new List<Administrateurs>();
+
+            // Vérifier si le fichier existe
+            if (File.Exists(filePathAdmins))
+            {
+                string json = File.ReadAllText(filePathAdmins);
+
+                // Vérifier si le fichier n'est pas vide
+                if (!string.IsNullOrWhiteSpace(json))
+                {
+                    users = JsonConvert.DeserializeObject<List<Administrateurs>>(json);
+                }
+            }
+            return users;
+        }
+
+        static void SaveAdminsToJson(List<Administrateurs> admins, string filePathAdmins)
+        {
+            string json = JsonConvert.SerializeObject(admins, Formatting.Indented);
+            File.WriteAllText(filePathAdmins, json);
+            Console.WriteLine($"Les administrateurs ont été sauvegardés dans le fichier {filePathAdmins}.");
+        }
+    }
+}

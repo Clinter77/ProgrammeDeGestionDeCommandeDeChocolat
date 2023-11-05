@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammeDeGestionDeCommandeDeChocolat", "ProgrammeDeGestionDeCommandeDeChocolat.csproj", "{DD76EACB-F770-4EBA-B5F3-B6C3347B2B1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesListes", "servicesListes\ServicesListes.csproj", "{3A6439DF-7FEC-4A2C-92A3-8324577D5CD7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{539BBFD6-E4D0-4340-A6E0-135C84A4E3A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesFichiersInteractions", "ServicesFichiersInteractions\ServicesFichiersInteractions.csproj", "{117671A6-0166-4F42-A4A5-22B869DD8B75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicesLogs", "ServicesLogs\ServicesLogs.csproj", "{B9810BFC-F8C8-41DD-B543-CF07CF430DF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgrammeDeGestionDeCommandeDeChocolatCore", "ProgrammeDeGestionDeCommandeDeChocolatCore\ProgrammeDeGestionDeCommandeDeChocolatCore.csproj", "{3182A7A1-6AD3-44F8-A589-06707308C4DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD76EACB-F770-4EBA-B5F3-B6C3347B2B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD76EACB-F770-4EBA-B5F3-B6C3347B2B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD76EACB-F770-4EBA-B5F3-B6C3347B2B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD76EACB-F770-4EBA-B5F3-B6C3347B2B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A6439DF-7FEC-4A2C-92A3-8324577D5CD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A6439DF-7FEC-4A2C-92A3-8324577D5CD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A6439DF-7FEC-4A2C-92A3-8324577D5CD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A6439DF-7FEC-4A2C-92A3-8324577D5CD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{539BBFD6-E4D0-4340-A6E0-135C84A4E3A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{539BBFD6-E4D0-4340-A6E0-135C84A4E3A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{539BBFD6-E4D0-4340-A6E0-135C84A4E3A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{539BBFD6-E4D0-4340-A6E0-135C84A4E3A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{117671A6-0166-4F42-A4A5-22B869DD8B75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117671A6-0166-4F42-A4A5-22B869DD8B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117671A6-0166-4F42-A4A5-22B869DD8B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{117671A6-0166-4F42-A4A5-22B869DD8B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9810BFC-F8C8-41DD-B543-CF07CF430DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9810BFC-F8C8-41DD-B543-CF07CF430DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9810BFC-F8C8-41DD-B543-CF07CF430DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9810BFC-F8C8-41DD-B543-CF07CF430DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3182A7A1-6AD3-44F8-A589-06707308C4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3182A7A1-6AD3-44F8-A589-06707308C4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3182A7A1-6AD3-44F8-A589-06707308C4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3182A7A1-6AD3-44F8-A589-06707308C4DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A7B64F32-9320-4F83-AA11-E173C0E62F35}
+	EndGlobalSection
+EndGlobal

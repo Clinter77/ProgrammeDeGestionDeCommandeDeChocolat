@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using Models;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
+
+namespace ServicesFichiersInteractions
+{
+    internal class FileReader
+    {
+
+        FileStream aFile;
+
+        // sur mon poste chez-moi
+        static string filePathArticles = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
+
+        // sur le PC Mewo
+        // static string filePathArticles = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
+
+        /// <summary>
+        /// Lecture du (ou des) compte(s) Administrateurs en BDD (fichier JSON)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static void ReadTableaudArticles(List<Articles> arrayOfArticles)
+        {
+            try
+            {
+                string jsonArrayOfArticles = arrayOfArticles.ToString();
+                JsonSerializer serializer = new JsonSerializer();
+                using (StreamWriter sw = new StreamWriter(filePathArticles))
+                using (JsonWriter writer = new JsonTextWriter(sw))
+                {
+                    serializer.Serialize(writer, arrayOfArticles);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("e\t" + e.Message);
+            }
+        }
+
+    }
+}
+
