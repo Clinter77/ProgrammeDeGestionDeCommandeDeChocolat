@@ -392,3 +392,92 @@ ajout de l'utilisateur ayant pour nom n prénom p adresse a et numéro de télé
 ******************************************************************************************************************
 ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
 ******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 06/11/2023 17:35:26
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 06/11/2023 17:35:26
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 06/11/2023 17:35:27
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom n prénom p adresse a et numéro de téléphone 123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 06/11/2023 17:35:46
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 06/11/2023 17:35:51
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 06/11/2023 17:35:51
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 06/11/2023 17:35:52
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom n prénom p adresse a et numéro de téléphone 123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 06/11/2023 17:40:14
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 06/11/2023 17:40:14
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 06/11/2023 17:40:15
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom n prénom p adresse a et numéro de téléphone 123
+******************************************************************************************************************

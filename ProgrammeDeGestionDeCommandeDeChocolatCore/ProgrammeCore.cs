@@ -426,7 +426,11 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
             catch (FormatException)
             {
-                Console.WriteLine("Erreur de format. Assurez-vous d'entrer un nombre entier valide.");
+                if ((inputUserInt.ToString() != "F") || (inputUserInt.ToString() != "f"))
+                {
+                    Console.WriteLine("En saisissant la lettre F, vous mettez fin à la commande en cours");
+                }
+                else Console.WriteLine("Erreur de format. Assurez-vous d'entrer un nombre entier valide.");
             }
             catch (OverflowException)
             {
