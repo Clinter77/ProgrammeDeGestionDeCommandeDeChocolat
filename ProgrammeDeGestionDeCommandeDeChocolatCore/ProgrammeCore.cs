@@ -27,7 +27,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         static DateTime now = DateTime.Now;
         // static int inputUserArticle;
         static int inputUserArticleInt;
-        static int inputUserInt;
+        static int inputUserInt = -1;
         static string inputUser = "";
         // static object inputUser = new object();
         static string quantiteArticlesCommandesParUser = "";
@@ -331,7 +331,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         public static void functionUserCommand()
         {
             Console.WriteLine("Voici les articles actuellement disponibles ");
-            Console.Read();
+            Console.WriteLine();
 
             // chez-moi
             // string cheminAcces = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
@@ -373,12 +373,11 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
             Console.WriteLine("Saisissez F pour mettre Fin à la commande en cours ou bien poursuivez votre commande en sélectionnant les articles et leurs quantités au fur à mesure");
             Console.WriteLine("Voici les articles actuellement disponibles");
-            Console.Read();
             foreach (Articles article in articles)
             {
                 Console.WriteLine("Référence : " + article.Reference + "\n\tPrix unitaire : " + article.Prix + "\n\tQuantité actuellemet disponile en stock " + article.Quantite);
             }
-            Console.Read();
+            Console.WriteLine();
             commandArticles();
             // Console.ReadKey();
         }
@@ -399,7 +398,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 Console.WriteLine("Saisissez " + choixRef + " pour commander l'article : " + article.Reference);
                 choixRef++;
             }
-
+            Console.WriteLine();
             float prixTotalCommande = 0F;
 
             // keyTouch la touche saisie par l'User (qui peut aussi bien être sous la forme d'un int (de 0 à 9 par exemple)
@@ -409,13 +408,16 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             List<ArticlesAchetes> listeArticlesAchetes = new List<ArticlesAchetes>();
             List<Articles> currentCommandList = new List<Articles>();
 
-            Console.Write("Quel est votre choix d'article ? ");
-
-            // Lecture de la ligne saisie par l'utilisateur
+            Console.WriteLine("Quel est votre choix d'article ? ");
+            Console.WriteLine("Saisissez la valeur correspondante à l'article ");
             inputUser = Console.ReadLine();
+            Console.Read();
 
+
+            Console.WriteLine(inputUser+" de type "+inputUser.GetType());
             try
             {
+                Console.WriteLine();
                 // Conversion de la chaîne en un entier en utilisant Convert.ToInt32
                 inputUserInt = Convert.ToInt32(inputUser);
 

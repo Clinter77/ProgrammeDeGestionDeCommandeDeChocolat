@@ -1,32 +1,32 @@
 [
   {
-    "Id": "c33e4f99-4c00-4f9a-8a36-d5d889e72b82",
+    "Id": "474fcee8-b7df-41fa-a3e7-3c166a614aaa",
     "Reference": "Ferrero rocher - boîte de 16 chocolats",
     "Prix": 2.83,
     "Quantite": 50
   },
   {
-    "Id": "d0a0b941-83c2-4b84-8bd7-33fe9ab0a7f6",
+    "Id": "820cb8c8-2454-4d2f-8af5-177d5257958d",
     "Reference": "Jeff De Bruges - boîte ronde de 26 chocolats assortis",
     "Prix": 39.35,
     "Quantite": 50
   },
   {
-    "Id": "b5d3ef26-dc31-41c2-bcd8-133702ba8a0f",
+    "Id": "6dc46ccc-7d3d-4da4-8131-ebe643e21b58",
     "Reference": "Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats",
     "Prix": 8.09,
     "Quantite": 50
   },
   {
-    "Id": "5824d29a-0721-4cfe-9aef-a0305a8429b8",
+    "Id": "78a2dc2b-2663-4221-aa89-eb16d198332c",
     "Reference": "Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats",
     "Prix": 3.91,
     "Quantite": 50
   },
   {
-    "Id": "b2c79974-9310-418a-98de-41afc0978049",
+    "Id": "5f8465a2-bf79-43cb-8fdd-14416e13fd0c",
     "Reference": "Kinder Bueno - boîte de 10 unités",
     "Prix": 6.59,
-    "Quantite": 50
+    "Quantite": 40
   }
 ]
