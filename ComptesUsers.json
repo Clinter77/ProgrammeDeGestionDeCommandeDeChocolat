@@ -4,5 +4,11 @@
     "Prenom": "totoprénom",
     "Adresse": "15 rue des Totos 75008 Paris 8",
     "Telephone": "0101010101"
+  },
+  {
+    "Nom": "TestNom",
+    "Prenom": "TestPrénom",
+    "Adresse": "15 Avenue des Tests 75000 Paris",
+    "Telephone": "0123456789"
   }
 ]

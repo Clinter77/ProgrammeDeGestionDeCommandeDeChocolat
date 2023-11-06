@@ -380,7 +380,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
             Console.Read();
             commandArticles();
-            Console.ReadKey();
+            // Console.ReadKey();
         }
 
 
@@ -409,18 +409,41 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             List<ArticlesAchetes> listeArticlesAchetes = new List<ArticlesAchetes>();
             List<Articles> currentCommandList = new List<Articles>();
 
+            Console.Write("Quel est votre choix d'article ? ");
+
+            // Lecture de la ligne saisie par l'utilisateur
+            inputUser = Console.ReadLine();
+
+            try
+            {
+                // Conversion de la chaîne en un entier en utilisant Convert.ToInt32
+                inputUserInt = Convert.ToInt32(inputUser);
+
+                // Affichage du résultat
+                Console.WriteLine($"Vous avez saisi : {inputUserInt} qui est de type {inputUserInt.GetType()}");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Erreur de format. Assurez-vous d'entrer un nombre entier valide.");
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("Le nombre saisi est trop grand ou trop petit pour être représenté en tant qu'entier.");
+            }
+
             while ((inputUser.ToString() != "F") || (inputUser.ToString() != "f"))
             {
-                Console.WriteLine("Quel est votre choix d'article ?");
+                // Console.WriteLine("Quel est votre choix d'article ?");
 
-                inputUser = Console.ReadLine();
-                Console.Read();
+                // inputUser = Console.ReadLine();
+                // Console.Read();
                 // checkKeyTouch(inputUser);
 
                 // le type d'inputUser
-                Console.WriteLine(inputUser.GetType());
-                Console.Read();
+                // Console.WriteLine(inputUser.GetType());
+                // Console.Read();
 
+                /* 
                 string[] numbersArray = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
                 foreach (string n in numbersArray)
                 {
@@ -430,6 +453,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                         inputUserInt = Convert.ToInt32(inputUser);
                     }
                 }
+                */
 
                 // je m'assure que inputUserInt est bien de type int
                 if (typeof(int) == inputUserInt.GetType())
@@ -575,7 +599,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             {
                 Console.WriteLine("Vous n'avez pas renseignées toutes les informations requises : ");
                 Console.WriteLine($"nom {n}, prénom {p}, adresse {a}, et téléphone {t}");
-
+                Console.Read();
                 createUserAccount();
             }
             else
