@@ -58,37 +58,22 @@ namespace ServicesFichiersInteractions
         /// </summary>
         /// <param name="login, password"></param>
         /// <returns>void</returns>
-        public static void CreateAdmin(string login, string password)
+        public static void CreateAdmin(List<Administrateurs> admins)
         {
-            List<Administrateurs> admins = new List<Administrateurs>();
-
-            if (LoadAdminsFromJson(filePathAdmins) != null)
+            /* 
+            Console.Read();
+            foreach (Administrateurs admin in admins)
             {
-                // Charger les administrateurs existants depuis le fichier JSON
-                admins = LoadAdminsFromJson(filePathAdmins);
+                Console.WriteLine(admin.Login+" "+admin.Password);
             }
-            
-            Administrateurs administrateur = new Administrateurs(login, password);
-
-            // Ajouter le nouvel administrateur à la liste
-            admins.Add(administrateur);
-
-        
-            // Sauvegarder la liste mise à jour dans le fichier JSON
-            SaveAdminsToJson(admins, filePathAdmins);
-        
-            if (admins.Count()>0)
-            {
-                // Afficher les administrateurs mis à jour
-                /* Console.WriteLine("administrateurs mis à jour :");
-                foreach (Administrateurs admin in admins)
-                {
-                    Console.WriteLine($"Id: {admin.Id}, Login: {admin.Login}, Password: {admin.Password}");
-                } */
-                // Afficher l'administrateur ajouté
-                Console.WriteLine("l'administrateur ajouté :");
-                Console.WriteLine($"Id: {administrateur.Id}, Login: {administrateur.Login}, Password: {administrateur.Password}");
-            }
+            Console.Read();
+            */ 
+            // List<Administrateurs> admins = new List<Administrateurs>();
+            // Administrateurs administrateur = new Administrateurs(login, password);
+            // admins.Add(administrateur);
+            string json = JsonConvert.SerializeObject(admins, Formatting.Indented);
+            File.WriteAllText(filePathAdmins, json);
+            Console.WriteLine("l'administrateur a bien été ajouté");
         }
 
         /// <summary>

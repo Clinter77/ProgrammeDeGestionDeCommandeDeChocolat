@@ -69,7 +69,6 @@ namespace ServicesFichiersInteractions
         public static List<Administrateurs> LoadAdminsFromJson()
         {
             Console.WriteLine("méthode LoadAdminsFromJson() de FileReader");
-            Console.Read();
             List<Administrateurs> admins = new List<Administrateurs>();
 
             if (File.Exists(filePathAdmins))

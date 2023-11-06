@@ -25,7 +25,14 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         static string[] currentUser = new string[2];
         // Obtention des informations par rapport à la date actuelle de la commande, et toutes ses informations (dont les heures et minutes)
         static DateTime now = DateTime.Now;
-        static int inputUserArticle;
+        // static int inputUserArticle;
+        static int inputUserArticleInt;
+        static int inputUserInt;
+        static string inputUser = "";
+        // static object inputUser = new object();
+        static string quantiteArticlesCommandesParUser = "";
+        static int quantiteArticlesCommandesParUserInt = 0;
+
 
         // sur mon poste chez-moi
         static string filePathArticles = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json";
@@ -68,12 +75,13 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         {
             Console.Clear();
             // Console.Read();
-            Console.WriteLine("1: Utilisateur");
-            Console.WriteLine("2: Administrateur");
-            Console.WriteLine("Quel compte souhaitez vous créer ? Quel est votre profil ?");
+            Console.WriteLine("1: Utilisateur ");
+            Console.WriteLine("2: Administrateur ");
+            Console.WriteLine("Quel est votre profil ? ");
             // int inputChoiceProfil = Convert.ToInt32(Console.ReadLine());
             var inputAccountType = Console.ReadLine(); // ReadLine returns string type
-            Console.Read();
+            Console.WriteLine("inputAccountType "+ inputAccountType);
+           
             checkTypeOfVariable(inputAccountType);
             // Console.WriteLine(inputAccountType+" "+inputAccountType.GetTypeCode());
             // Console.Read();
@@ -89,7 +97,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         }
 
         // Fonction pour vérifier la validité de la variable entrée par l'User
-        public static void checkTypeOfVariable<T>(T inputAccountType)
+        public static void checkTypeOfVariable(string inputAccountType)
         {
             // Console.WriteLine("Type : {0}, Valeur : {1}", typeof(T), inputAccountType); // 0 : le type et 1 sa valeur
             // Console.WriteLine(inputAccountType + " " + inputAccountType.GetType());
@@ -104,7 +112,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 // Console.WriteLine("méthode checkTypeOfVariable()");
                 // Console.WriteLine("voici votre choix : " + inputChoiceAccountType + " " + inputChoiceAccountType.GetType());
                 Console.WriteLine("voici votre choix : " + inputAccountTypeInt);
-                Console.Read();
                 // Console.Clear();
                 checkChoiceAccount(inputAccountTypeInt);
             }
@@ -112,10 +119,9 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             {
                 // Console.WriteLine(inputAccountType + " " + inputAccountType.GetType());
                 Console.WriteLine(inputAccountType.GetType() + " " + e.Message);
-                Console.Read();
-                Console.WriteLine("Le profil choisi ne fait pas partie des choix disponibles, entrez un choix correct, 1 ou 2, selon le profil de compte");
+                /* Console.WriteLine("Le profil choisi ne fait pas partie des choix disponibles, entrez un choix correct, 1 ou 2, selon le profil de compte");
                 Console.WriteLine("Quel est votre choix de profil de compte ?");
-                Console.Read();
+                Console.Read(); */
                 // Console.Clear();
                 askAccountType();
                 // askAccountType(); malheureusement ne sors plus de la boucle une fois entré dans le catch, même avec des choix corrects dans askAccountType()
@@ -128,29 +134,28 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         {
             // Console.WriteLine("méthode checkChoiceAccount()");
             // Console.Read();
-            if ((inputAccountTypeInt >= 3) || (inputAccountTypeInt < 0))
+            if ((inputAccountTypeInt < 0) || (inputAccountTypeInt >= 3))
             {
                 Console.WriteLine($"Le choix {inputAccountTypeInt} n'est pas un choix correct. Les seuls choix possibles sont 1 ou 2.");
-                Console.Read();
+               
                 askAccountType();
             }
             switch (inputAccountTypeInt)
             {
                 case 1:
                     Console.WriteLine($"En ayant choisi la valeur {inputAccountTypeInt}, cela signifie que vous souhaitez vous connecter en tant qu'Utilisateur dans cette application.");
-                    Console.Read();
+                  
                     createUserAccount();
                     connexionUser();
                     break;
                 case 2:
                     Console.WriteLine($"En ayant choisi la valeur {inputAccountTypeInt}, cela signifie que vous souhaitez vous connecter en tant qu'Administrateur dans cette application.");
-                    Console.Read();
                     createAdminAccount();
                     connexionAdmin();
                     break;
                 default:
                     Console.WriteLine("Valeur inconnue au bataillon !");
-                    Console.Read();
+                   
                     askAccountType();
                     break;
             }
@@ -160,40 +165,40 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
         public static void createAdminAccount()
         {
-            login = "";
-            password = "";
             List<Administrateurs> tableaudAdministrateurs = new List<Administrateurs>();
             // Console.WriteLine("Quel identifiant de connexion (login) voulez-vous ? - L'identifiant doit comprendre au moins trois caractères et ne pas dépasser 15 caractères");
             // Console.Read();
             // j'assigne la variable de l'User à ma variable login - ReadLine retunrs string type
 
             // Console.WriteLine("Quel identifiant de connexion (login) voulez-vous ?\nL'identifiant doit comprendre au moins trois caractères et ne pas dépasser 15 caractères");
-            Console.WriteLine("Quel identifiant de connexion (login) voulez-vous ? \nL'identifiant doit comprendre au moins trois caractères et ne pas dépasser 15 caractères");
-            Console.Read();
-            login = Console.ReadLine();
+
+            /* Console.WriteLine("L'identifiant doit comprendre au moins trois caractères et ne pas dépasser 15 caractères");
+            Console.WriteLine("Saisissez vos informations ");
+            Console.WriteLine("Quel identifiant de connexion (login) voulez-vous ? ");
+           
+            login = Console.ReadLine(); */
 
             // Console.WriteLine("Voici votre login de connexion : " + login);
             // Console.WriteLine("Appuyez sur une touche pour fermer la console.");
             // Console.ReadKey();
+            Administrateurs admin = new Administrateurs("ChristopheAdmin","ChristophePassword@123");
+            tableaudAdministrateurs.Add(admin);
+            // Console.WriteLine(admin.Login+" "+admin.Password);
+            checkValidateLogin(admin.Login);
 
-            checkValidateLogin(login);
+            // Console.WriteLine("Votre mot de passe doit contenir au moins 6 caractères alphanumériques et au moins un caractère spécial parmis les suivants : &#{[(|-_)]}$*%<>;,:!?.@ ( par exemple : AZERT1%)");
+            // Console.WriteLine("Entrez le mot de passe de connexion (password) que vous souhaitez ? ");
+            /// password = Console.ReadLine();
 
-            Console.WriteLine("Entrez le mot de passe de connexion (password) que vous souhaitez ?\nVotre mot de passe doit contenir au moins 6 caractères alphanumériques et au moins un caractère spécial parmis les suivants : &#{[(|-_)]}$*%<>;,:!?.@ ( par exemple : AZERT1%)");
-            Console.Read();
-            password = Console.ReadLine();
+            checkValidatePassword(admin.Password, arrayOfSpecialsChars);
 
-            checkValidatePassword(password, arrayOfSpecialsChars);
+            // tableaudAdministrateurs.Add(new Administrateurs(login, password));
+            Console.WriteLine($"ajout de l'administrateur en BDD - dans le fichier JSON");
+            // Console.WriteLine($"ajout de l'administrateur ayant pour login {login} et pour password {password}");
+            ServicesLogs.ClassNLogJournalisation.LogAdminstrateursToJournalFile(admin);
+            // avant - ServicesLogs.ClassNLogJournalisation.LogAdminstrateursToComptesAdminFile(tableaudAdministrateurs);
+            FileWriter.CreateAdmin(tableaudAdministrateurs);
 
-            if (isPasswordValid == true)
-            {
-                // tableaudAdministrateurs.Add(new Administrateurs(login, password));
-                Administrateurs administrateur = new Administrateurs(login, password);
-                tableaudAdministrateurs.Add(administrateur);
-                Console.WriteLine($"ajout de l'administrateur ayant pour login {login} et pour password {password}");
-                ServicesLogs.ClassNLogJournalisation.LogAdminstrateursToJournalFile(administrateur);
-                // avant - ServicesLogs.ClassNLogJournalisation.LogAdminstrateursToComptesAdminFile(tableaudAdministrateurs);
-                FileWriter.CreateAdmin(login, password);
-            }
 
             /* tableaudAdministrateurs.Add(new Administrateurs("Christophe", "Christophe57@CsharpExam"));
             foreach (var administrateur in tableaudAdministrateurs)
@@ -209,11 +214,9 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             if ((lgn.Length <= 2) || (lgn.Length > 15))
             {
                 Console.WriteLine("Le login (identifiant) renseigné ne respecte pas les consignes ! au moins trois caractères et ne pas dépasser les 15 caractères");
-                Console.Read();
                 // createAdminAccount();
             }
             else Console.WriteLine($"Voici votre identifiant de connexion (login) : {lgn}");
-            Console.Read();
         }
 
         public static void checkValidatePassword(string pswrd, char[] arrayOfSpecialsChars)
@@ -229,20 +232,17 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             // La longueur est juste
             // Console.WriteLine($"pswrd : {pswrd}");
             // Console.WriteLine(pswrd.Length);
-            Console.WriteLine($"votre mot de passe : {password}");
-            Console.Read();
-            while (password.Length < 6)
+            // Console.WriteLine($"votre mot de passe : {password}");
+
+            while (pswrd.Length < 6)
             {
-                Console.WriteLine("Votre mot de passe n'est pas valide, il ne respecte pas les consignes");
-                Console.WriteLine("Entrez le mot de passe de connexion (password) que vous souhaitez ?\nVotre mot de passe doit contenir au moins 6 caractères alphanumériques et au moins un caractère spécial parmis les suivants : &#{[(|-_)]}$*%<>;,:!?.@ ( par exemple : AZERT1%)");
-                Console.Read();
-                password = Console.ReadLine();
+                Console.WriteLine("Votre mot de passe n'est pas valide, il ne respecte pas les consignes ");
+                Console.WriteLine("Celui-ci doit contenir au moins 6 caractères alphanumériques et au moins un caractère spécial parmis les suivants : &#{[(|-_)]}$*%<>;,:!?.@ ( par exemple : AZERT1% ) ");
             }
             if (password.Length >= 6)
             {
                 foreach (char passwordChar in password)
                 {
-                    // isPasswordValid
                     foreach (char c in arrayOfSpecialsChars)
                     {
                         if (passwordChar == c)
@@ -252,14 +252,17 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     }
                 }
                 // Console.WriteLine("isPasswordValid "+ isPasswordValid);
-                Console.Read();
+              
+                
                 if (isPasswordValid == true)
                 {
-                    Console.WriteLine("Votre mot de passe \' " + password + " \' est valide");
+                    Console.WriteLine("Le mot de passe renseigné par l'Administrateur est valide");
+                    // Console.WriteLine("Votre mot de passe \' " + password + " \' est valide");
                 }
                 else
                 {
-                    Console.WriteLine("Votre mot de passe \' " + password + "\' n'est pas valide");
+                    Console.WriteLine("Le mot de passe renseigné par l'Administrateur n'est pas valide");
+                    // Console.WriteLine("Votre mot de passe \' " + password + "\' n'est pas valide");
                 }
             }
         }
@@ -268,35 +271,36 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
         public static void createUserAccount()
         {
-            List<Users> tableaudUsers = new List<Users>();
 
-            Console.Write("Entrez votre nom :\n");
+            Console.WriteLine("Saisissez vos informations ");
+
+            Console.Write("Entrez votre nom : ");
             string nom = Console.ReadLine();
-            Console.Read();
 
-            Console.Write("Entrez votre prénom :\n");
+
+            Console.Write("Entrez votre prénom : ");
             string prenom = Console.ReadLine();
-            Console.Read();
 
-            Console.Write("Entrez votre adresse :\n");
+
+            Console.Write("Entrez votre adresse : ");
             string adresse = Console.ReadLine();
-            Console.Read();
 
-            Console.Write("Entrez votre numéro de téléphone :\n");
+
+            Console.Write("Entrez votre numéro de téléphone : ");
             string telephone = Console.ReadLine();
-            Console.Read();
 
-
-            Console.WriteLine($"Voici les information renseignées : ");
+            // Affichage des informations saisies
             Console.WriteLine($"Nom : {nom}");
             Console.WriteLine($"Prénom : {prenom}");
             Console.WriteLine($"Adresse : {adresse}");
             Console.WriteLine($"Numéro de téléphone : {telephone}");
+
             Console.Read();
 
             checkValidateInfos(nom, prenom, adresse, telephone);
 
             Users user = new Users(nom, prenom, adresse, telephone);
+            List<Users> tableaudUsers = new List<Users>();
             tableaudUsers.Add(user);
 
             // je stocke son nom et son prénom dans un array car j'en aurais besoin un peu plus tard ...
@@ -330,7 +334,11 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             Console.WriteLine("Voici les articles actuellement disponibles ");
             Console.Read();
 
-            string cheminAcces = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
+            // chez-moi
+            // string cheminAcces = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
+
+            // poste MEWO
+            string cheminAcces = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
 
             // Création d'une nouvelle instance du processus CMD (Command Prompt)
             Process cmdProcess = new Process();
@@ -376,11 +384,16 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             Console.ReadKey();
         }
 
+        
+
         public static void commandArticles()
         {
+
+            
+
             // je charge les articles depuis le fichier JSON
             List<Articles> articles = FileReader.LoadArticlesFromJson();
-            int choixRef = 1;
+            int choixRef = 0;
             Console.WriteLine("Voici les choix disponibles pour passer commande");
             foreach (Articles article in articles)
             {
@@ -388,68 +401,101 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 choixRef++;
             }
 
-            string inputUserStr = "";
-            
             float prixTotalCommande = 0F;
+
+            // keyTouch la touche saisie par l'User (qui peut aussi bien être sous la forme d'un int (de 0 à 9 par exemple)
+            // ou aussi bien une touche comme F, P, ou V (pour mettre Fin à la commande, P Print pour l'afficher ou V pour Visualiser celle-ci)
+            object keyTouch = new object();
+
             List<ArticlesAchetes> listeArticlesAchetes = new List<ArticlesAchetes>();
             List<Articles> currentCommandList = new List<Articles>();
             
-            while ( (inputUserStr != "F") || (inputUserStr != "f") )
+            while ( (inputUser.ToString() != "F") || (inputUser.ToString() != "f") )
             {
                 Console.WriteLine("Quel est votre choix d'article ?");
-                inputUserArticle = Convert.ToInt32(Console.ReadLine());
+                
+                inputUser = Console.ReadLine();
                 Console.Read();
-                if ((inputUserArticle >= 0) && (inputUserArticle < articles.Count-1))
+                // checkKeyTouch(inputUser);
+
+                // le type d'inputUser
+                Console.WriteLine(inputUser.GetType());
+                Console.Read();
+
+                string[] numbersArray = {"0","1","2","3","4","5","6","7","8","9"};
+                foreach (string n in numbersArray)
                 {
-                    Console.WriteLine("Combien en voulez-vous ? ");
-                    int quantiteArticleCommande = Convert.ToInt32(Console.ReadLine());
-                    if (quantiteArticleCommande <= articles[inputUserArticle].Quantite)
+                    if (inputUser == n)
                     {
-                        ArticlesAchetes articlesAchete = new ArticlesAchetes(articles[inputUserArticle].Id, quantiteArticleCommande);
-                        // ajout à la liste de sa commande
-                        listeArticlesAchetes.Add(articlesAchete);
-                        currentCommandList.Add(new Articles(articles[inputUserArticle].Reference, articles[inputUserArticle].Prix, quantiteArticleCommande));
-
-                        // Utilisation du Setter pour mettre à jour la quantité
-                        articles[inputUserArticle].Quantite -= quantiteArticleCommande;
-
-                        // Enregistrement des modifications dans le fichier JSON
-                        FileWriter.SaveArticlesToJson(articles);
-
-                        // mettre à jour le prix de sa commande en cours
-                        prixTotalCommande += articles[inputUserArticle].Prix * quantiteArticleCommande;
+                        // conversion de l'inputUser en int pour pouvoir être utilisé sous cette forme pour la suite ...
+                        inputUserInt = Convert.ToInt32(inputUser);
                     }
                 }
-                else
+
+                // je m'assure que inputUserInt est bien de type int
+                if (typeof(int) == inputUserInt.GetType())
                 {
-                    Console.WriteLine("Choix d'article inconnu");
-                    Console.Read();
+                    // Console.WriteLine(articles.Count); // 5 c'est bon
+
+                    if ((inputUserInt >= 0) && (inputUserInt < articles.Count))
+                    {
+                        Console.WriteLine($"Vous souhaitez commander l'article : {articles[inputUserInt].Reference}");
+                        Console.Read();
+                        Console.WriteLine("Combien en voulez-vous ? ");
+                        quantiteArticlesCommandesParUser = Console.ReadLine();
+                        quantiteArticlesCommandesParUserInt = Convert.ToInt32(quantiteArticlesCommandesParUser);
+                        if (quantiteArticlesCommandesParUserInt <= articles[inputUserInt].Quantite)
+                        {
+                            ArticlesAchetes articlesAchete = new ArticlesAchetes(articles[inputUserInt].Id, quantiteArticlesCommandesParUserInt);
+                            // ajout à la liste de sa commande
+                            listeArticlesAchetes.Add(articlesAchete);
+                            currentCommandList.Add(new Articles(articles[inputUserInt].Reference, articles[inputUserInt].Prix, quantiteArticlesCommandesParUserInt));
+
+                            // Utilisation du Setter pour mettre à jour la quantité
+                            articles[inputUserInt].Quantite -= quantiteArticlesCommandesParUserInt;
+
+                            // Enregistrement des modifications dans le fichier JSON
+                            FileWriter.SaveArticlesToJson(articles);
+
+                            // mettre à jour le prix de sa commande en cours
+                            prixTotalCommande += articles[inputUserInt].Prix * quantiteArticlesCommandesParUserInt;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Choix d'article inconnu");
+                        Console.Read();
+                    }
                 }
             }
 
-            if ((inputUserStr == "F") || (inputUserStr == "f")) 
+            if ((inputUser == "F") || (inputUser == "f")) 
             {
                 Console.WriteLine("Saisissez P si vous souhaitez connaître le prix de votre commande en cours\n ou V pour Visualiser votre commande");
-                inputUserStr = Console.ReadLine();
+                inputUser = Console.ReadLine();
                 Console.Read();
-                if ((inputUserStr == "P") || (inputUserStr == "p"))
+                if ((inputUser == "P") || (inputUser == "p"))
                 {
                     // l'User veut voir le prix de sa commande en cours
                     Console.WriteLine("Prix de votre commande actuellement : "+ prixTotalCommande);
                     Console.Read();
                 }
-                if ((inputUserStr == "V") || (inputUserStr == "v"))
+                if ((inputUser == "V") || (inputUser == "v"))
                 {
                     // l'User veut visualiser sa commande (généré dans un dossier à son nom et son nom de fichier doit avoir le format suivant "Nom-Prenom-Jour-Mois-Annee-Heure-Minute.txt"
                     foreach (ArticlesAchetes articleAchete in listeArticlesAchetes)
                     {
                         Console.WriteLine(articleAchete);
-                        // 10/10/2023 Ajout d'un kinder 100g à 10h23 par Toto l'asticot
-                        ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de "+ currentCommandList[inputUserArticle].Quantite + " pour l'article " + currentCommandList[inputUserArticle].Reference + " à " + now.Hour+"h"+now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
+                        // exemple à suivre : 10/10/2023 Ajout d'un kinder 100g à 10h23 par Toto l'asticot
+                        ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de "+ currentCommandList[inputUserInt].Quantite + " pour l'article " + currentCommandList[inputUserInt].Reference + " à " + now.Hour+"h"+now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
                     }
                     Console.Read();
 
+                    // chez-moi
                     string cheminEnregistrement = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
+                    
+                    // poste MEWO
+                    // string cheminEnregistrement = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
 
                     // Création d'une nouvelle instance du processus CMD (Command Prompt)
                     Process cmdProcess = new Process();
@@ -500,6 +546,18 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
         }
 
+        public static void checkKeyTouch(object keyTouch)
+        {
+            // Lire la touche saisie par l'utilisateur
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+            // Afficher des informations sur la touche saisie
+            Console.WriteLine("\nTouche saisie : " + keyInfo.Key);
+            Console.WriteLine("Modificateurs : " + keyInfo.Modifiers);
+            Console.WriteLine("Caractère : " + keyInfo.KeyChar);
+            Console.Read();
+        }
+
         public static string askUserIfHeWantsToCommand()
         {
             Console.Write("Voulez-vous passer commande ? (O: Oui / N: Non) : ");
@@ -518,7 +576,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             {
                 Console.WriteLine("Vous n'avez pas renseignées toutes les informations requises : ");
                 Console.WriteLine($"nom {n}, prénom {p}, adresse {a}, et téléphone {t}");
-                Console.Read();
+
                 createUserAccount();
             }
             else
@@ -544,6 +602,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
         }
 
+
         public static void connexionAdmin()
         {
             // Charger les informations depuis le fichier JSON
@@ -557,11 +616,9 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             Console.WriteLine("Entrez votre login : ");
             string loginConnexion = Console.ReadLine();
             Console.Read();
-            Console.Read();
 
             Console.WriteLine("Entrez votre mot de passe : ");
             string passwordConnexion = Console.ReadLine();
-            Console.Read();
             Console.Read();
 
             // bool isAuthenticationSucced = false;
@@ -572,9 +629,8 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
             Console.Read(); */
 
-            FileReader.checkConnexionAdmin(adminstrateurs, loginConnexion, passwordConnexion);
-            FileReader.checkConnexionAdmin(adminstrateurs, loginConnexion, passwordConnexion);
-            Console.Read();
+            // FileReader.checkConnexionAdmin(adminstrateurs, loginConnexion, passwordConnexion);
+
 
             
             foreach (Administrateurs admin in adminstrateurs)
