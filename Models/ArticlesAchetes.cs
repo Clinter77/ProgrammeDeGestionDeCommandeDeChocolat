@@ -19,9 +19,9 @@ namespace Models
         public int Quantite { get; set; }
         public DateTime DateAchat { get; set; }
 
-        public ArticlesAchetes(Guid BuyerId, Guid ChocolateId, int Qte, DateTime DateAchat)
+        public ArticlesAchetes(Guid ChocolateId, int Qte)
         {
-            IdAcheteur = BuyerId;
+            IdAcheteur = Guid.NewGuid();
             IdChocolat = ChocolateId;
             Quantite = Qte;
             DateAchat = DateTime.Now;

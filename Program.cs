@@ -57,7 +57,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolat
             ServicesLogs.ClassNLogJournalisation.LogToJournalFile(arrayOfEtape[1]);
             ProgrammeDeGestionDeCommandeDeChocolatCore.ProgrammeCore.initialiserLesArticles();
 
-            ServicesFichiersInteractions.FileReader.LoadArticlesFromJson(filePathArticles);
+            ServicesFichiersInteractions.FileReader.LoadArticlesFromJson();
             List<Articles> articles = new List<Articles>();
             foreach (Articles article in articles)
             {
@@ -74,8 +74,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolat
             Console.WriteLine(arrayOfEtape[5] + " - " + DateTime.Now);
             Console.Read();
             ServicesLogs.ClassNLogJournalisation.LogToJournalFile(arrayOfEtape[5]);
-            ProgrammeDeGestionDeCommandeDeChocolatCore.ProgrammeCore.connexion();
-            Console.Read();
+            
 
 
 

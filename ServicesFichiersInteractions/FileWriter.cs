@@ -14,14 +14,14 @@ namespace ServicesFichiersInteractions
     {
 
         // sur mon poste chez-moi
-        static string filePathArticles = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
-        static string filePathAdmins = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesAdmins.json";
-        static string filePathUsers = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesUsers.json";
+        // static string filePathArticles = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
+        // static string filePathAdmins = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesAdmins.json";
+        // static string filePathUsers = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesUsers.json";
 
         // sur le PC Mewo
-        // static string filePathArticles = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
-        // static string filePathAdmins = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesAdmins.json";
-        // static string filePathUsers = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesUsers.json";
+        static string filePathArticles = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json"; // path to file
+        static string filePathAdmins = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesAdmins.json";
+        static string filePathUsers = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ComptesUsers.json";
 
 
         /// <summary>
@@ -132,8 +132,6 @@ namespace ServicesFichiersInteractions
 
         public static List<Administrateurs> LoadAdminsFromJson(string filePathAdmins)
         {
-            Console.WriteLine("méthode LoadAdminsFromJson()");
-            Console.Read();
 
             List<Administrateurs> admins = new List<Administrateurs>();
 
@@ -203,5 +201,26 @@ namespace ServicesFichiersInteractions
             return articles;
         }
 
+        public static void SaveArticlesToJson(List<Articles> articles)
+        {
+            string json = JsonConvert.SerializeObject(articles, Formatting.Indented);
+            File.WriteAllText(filePathArticles, json);
+        }
+
+        public static void logCommand(List<Articles> currentCommandList, float prixTotalCommande, string cheminEnregistrement)
+        {
+            using (FileStream aFile = new FileStream(cheminEnregistrement, FileMode.Append, FileAccess.Write))
+            using (StreamWriter sw = new StreamWriter(aFile))
+            {
+                sw.WriteLine("******************************************************************************************************************");
+                sw.WriteLine("Voici votre commande :");
+                foreach (Articles articleCommande in currentCommandList)
+                {
+                    sw.WriteLine($" Référence de l'article\t{articleCommande.Reference}\n\tson prix unitaire : {articleCommande.Prix}\n\tsa quantité commandée : {articleCommande.Quantite}");
+                }
+                sw.WriteLine("Prix total de la commande : "+prixTotalCommande);
+                sw.WriteLine("******************************************************************************************************************");
+            }
+        }
     }
 }

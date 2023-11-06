@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models;
+﻿using Models;
 using ServicesFichiersInteractions;
 using ServicesLogs;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 {
@@ -21,7 +20,17 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         static string prenom = "";
         static string adresse = "";
         static string telephone = "";
-        
+        static string choix = "";
+        static bool isAuthenticationSucced = false;
+        static string[] currentUser = new string[2];
+        // Obtention des informations par rapport à la date actuelle de la commande, et toutes ses informations (dont les heures et minutes)
+        static DateTime now = DateTime.Now;
+        static int inputUserArticle;
+
+        // sur mon poste chez-moi
+        static string filePathArticles = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json";
+        // sur mon poste chez-moi
+        // static string filePathArticles = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\Articles.json";
 
         public static void initialiserLesArticles()
         {
@@ -131,11 +140,13 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     Console.WriteLine($"En ayant choisi la valeur {inputAccountTypeInt}, cela signifie que vous souhaitez vous connecter en tant qu'Utilisateur dans cette application.");
                     Console.Read();
                     createUserAccount();
+                    connexionUser();
                     break;
                 case 2:
                     Console.WriteLine($"En ayant choisi la valeur {inputAccountTypeInt}, cela signifie que vous souhaitez vous connecter en tant qu'Administrateur dans cette application.");
                     Console.Read();
                     createAdminAccount();
+                    connexionAdmin();
                     break;
                 default:
                     Console.WriteLine("Valeur inconnue au bataillon !");
@@ -145,7 +156,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
         }
 
-
+        
 
         public static void createAdminAccount()
         {
@@ -193,12 +204,13 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             } */
         }
 
-        public static void checkValidateLogin(string lgn) 
+        public static void checkValidateLogin(string lgn)
         {
             if ((lgn.Length <= 2) || (lgn.Length > 15))
             {
                 Console.WriteLine("Le login (identifiant) renseigné ne respecte pas les consignes ! au moins trois caractères et ne pas dépasser les 15 caractères");
                 Console.Read();
+                // createAdminAccount();
             }
             else Console.WriteLine($"Voici votre identifiant de connexion (login) : {lgn}");
             Console.Read();
@@ -233,17 +245,19 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     // isPasswordValid
                     foreach (char c in arrayOfSpecialsChars)
                     {
-                        if (passwordChar == c){
+                        if (passwordChar == c)
+                        {
                             isPasswordValid = true;
                         }
                     }
                 }
                 // Console.WriteLine("isPasswordValid "+ isPasswordValid);
                 Console.Read();
-                if (isPasswordValid==true)
+                if (isPasswordValid == true)
                 {
-                    Console.WriteLine("Votre mot de passe \' "+password+" \' est valide");
-                } else
+                    Console.WriteLine("Votre mot de passe \' " + password + " \' est valide");
+                }
+                else
                 {
                     Console.WriteLine("Votre mot de passe \' " + password + "\' n'est pas valide");
                 }
@@ -256,18 +270,28 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         {
             List<Users> tableaudUsers = new List<Users>();
 
-            Console.Write("Entrez votre nom : ");
+            Console.Write("Entrez votre nom :\n");
             string nom = Console.ReadLine();
+            Console.Read();
 
-            Console.Write("Entrez votre prénom : ");
+            Console.Write("Entrez votre prénom :\n");
             string prenom = Console.ReadLine();
+            Console.Read();
 
-            Console.Write("Entrez votre adresse : ");
+            Console.Write("Entrez votre adresse :\n");
             string adresse = Console.ReadLine();
+            Console.Read();
 
-            Console.Write("Entrez votre numéro de téléphone : ");
+            Console.Write("Entrez votre numéro de téléphone :\n");
             string telephone = Console.ReadLine();
+            Console.Read();
 
+
+            Console.WriteLine($"Voici les information renseignées : ");
+            Console.WriteLine($"Nom : {nom}");
+            Console.WriteLine($"Prénom : {prenom}");
+            Console.WriteLine($"Adresse : {adresse}");
+            Console.WriteLine($"Numéro de téléphone : {telephone}");
             Console.Read();
 
             checkValidateInfos(nom, prenom, adresse, telephone);
@@ -275,12 +299,218 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             Users user = new Users(nom, prenom, adresse, telephone);
             tableaudUsers.Add(user);
 
+            // je stocke son nom et son prénom dans un array car j'en aurais besoin un peu plus tard ...
+            // le nom de l'User actuel dans la première cellule du tableau, et son prénom dans la suivante
+            currentUser[0] = nom;
+            currentUser[1] = prenom;
+
             // Console.WriteLine("Voici votre login de connexion : " + login);
             // Console.WriteLine("Appuyez sur une touche pour fermer la console.");
             // Console.ReadKey();
 
-            
         }
+
+        public static void connexionUser()
+        {
+            // avant - string userResponse = askUserIfHeWantsToCommand(); le Framework refuse de prendre en considération la variable
+            Console.WriteLine("Voulez-vous passer commande ? (O: Oui / N: Non) : ");
+            string userResponse = Console.ReadLine();
+            userResponse = Console.ReadLine();
+            Console.Read();
+            Console.Read();
+            Console.WriteLine($"Voici votre choix {userResponse}");
+            Console.Read();
+            if ( (userResponse.Equals("O", StringComparison.OrdinalIgnoreCase)) || (userResponse=="O") || (userResponse=="o") )
+            {
+                functionUserCommand();
+            }
+        }
+        public static void functionUserCommand()
+        {
+            Console.WriteLine("Voici les articles actuellement disponibles ");
+            Console.Read();
+
+            string cheminAcces = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
+
+            // Création d'une nouvelle instance du processus CMD (Command Prompt)
+            Process cmdProcess = new Process();
+
+            // Configuration de ses propriétés
+            cmdProcess.StartInfo.FileName = "cmd.exe";
+            cmdProcess.StartInfo.WorkingDirectory = cheminAcces;
+
+            // J'indique que je souhaite rediriger la sortie standard
+            cmdProcess.StartInfo.RedirectStandardInput = true;
+            cmdProcess.StartInfo.RedirectStandardOutput = true;
+            cmdProcess.StartInfo.UseShellExecute = false;
+            cmdProcess.StartInfo.CreateNoWindow = true;
+
+            // Démarrage du processus
+            cmdProcess.Start();
+
+            // Obtention du flux d'entrée standard du processus
+            StreamWriter sw = cmdProcess.StandardInput;
+
+            // Exécution de la commande CMD
+            sw.WriteLine("Notepad Articles.json");
+
+            // Je ferme le flux d'entrée standard et j'attend que le processus se termine
+            sw.Close();
+            cmdProcess.WaitForExit();
+
+            // Je ferme le processus
+            cmdProcess.Close();
+
+            List<Articles> articles = FileReader.LoadArticlesFromJson();
+            
+
+            Console.WriteLine("Saisissez F pour mettre Fin à la commande en cours ou bien poursuivez votre commande en sélectionnant les articles et leurs quantités au fur à mesure");
+            Console.WriteLine("Voici les articles actuellement disponibles");
+            Console.Read();
+            foreach (Articles article in articles)
+            {
+                Console.WriteLine("Référence : "+article.Reference+"\n\tPrix unitaire : "+article.Prix+ "\n\tQuantité actuellemet disponile en stock " + article.Quantite);
+            }
+            Console.Read();
+            commandArticles();
+            Console.ReadKey();
+        }
+
+        public static void commandArticles()
+        {
+            // je charge les articles depuis le fichier JSON
+            List<Articles> articles = FileReader.LoadArticlesFromJson();
+            int choixRef = 1;
+            Console.WriteLine("Voici les choix disponibles pour passer commande");
+            foreach (Articles article in articles)
+            {
+                Console.WriteLine("Saisissez " + choixRef + " pour commander l'article : " + article.Reference);
+                choixRef++;
+            }
+
+            string inputUserStr = "";
+            
+            float prixTotalCommande = 0F;
+            List<ArticlesAchetes> listeArticlesAchetes = new List<ArticlesAchetes>();
+            List<Articles> currentCommandList = new List<Articles>();
+            
+            while ( (inputUserStr != "F") || (inputUserStr != "f") )
+            {
+                Console.WriteLine("Quel est votre choix d'article ?");
+                inputUserArticle = Convert.ToInt32(Console.ReadLine());
+                Console.Read();
+                if ((inputUserArticle >= 0) && (inputUserArticle < articles.Count-1))
+                {
+                    Console.WriteLine("Combien en voulez-vous ? ");
+                    int quantiteArticleCommande = Convert.ToInt32(Console.ReadLine());
+                    if (quantiteArticleCommande <= articles[inputUserArticle].Quantite)
+                    {
+                        ArticlesAchetes articlesAchete = new ArticlesAchetes(articles[inputUserArticle].Id, quantiteArticleCommande);
+                        // ajout à la liste de sa commande
+                        listeArticlesAchetes.Add(articlesAchete);
+                        currentCommandList.Add(new Articles(articles[inputUserArticle].Reference, articles[inputUserArticle].Prix, quantiteArticleCommande));
+
+                        // Utilisation du Setter pour mettre à jour la quantité
+                        articles[inputUserArticle].Quantite -= quantiteArticleCommande;
+
+                        // Enregistrement des modifications dans le fichier JSON
+                        FileWriter.SaveArticlesToJson(articles);
+
+                        // mettre à jour le prix de sa commande en cours
+                        prixTotalCommande += articles[inputUserArticle].Prix * quantiteArticleCommande;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Choix d'article inconnu");
+                    Console.Read();
+                }
+            }
+
+            if ((inputUserStr == "F") || (inputUserStr == "f")) 
+            {
+                Console.WriteLine("Saisissez P si vous souhaitez connaître le prix de votre commande en cours\n ou V pour Visualiser votre commande");
+                inputUserStr = Console.ReadLine();
+                Console.Read();
+                if ((inputUserStr == "P") || (inputUserStr == "p"))
+                {
+                    // l'User veut voir le prix de sa commande en cours
+                    Console.WriteLine("Prix de votre commande actuellement : "+ prixTotalCommande);
+                    Console.Read();
+                }
+                if ((inputUserStr == "V") || (inputUserStr == "v"))
+                {
+                    // l'User veut visualiser sa commande (généré dans un dossier à son nom et son nom de fichier doit avoir le format suivant "Nom-Prenom-Jour-Mois-Annee-Heure-Minute.txt"
+                    foreach (ArticlesAchetes articleAchete in listeArticlesAchetes)
+                    {
+                        Console.WriteLine(articleAchete);
+                        // 10/10/2023 Ajout d'un kinder 100g à 10h23 par Toto l'asticot
+                        ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de "+ currentCommandList[inputUserArticle].Quantite + " pour l'article " + currentCommandList[inputUserArticle].Reference + " à " + now.Hour+"h"+now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
+                    }
+                    Console.Read();
+
+                    string cheminEnregistrement = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
+
+                    // Création d'une nouvelle instance du processus CMD (Command Prompt)
+                    Process cmdProcess = new Process();
+
+                    // Configuration de ses propriétés
+                    cmdProcess.StartInfo.FileName = "cmd.exe";
+                    cmdProcess.StartInfo.WorkingDirectory = cheminEnregistrement;
+
+                    // J'indique que je souhaite rediriger la sortie standard
+                    cmdProcess.StartInfo.RedirectStandardInput = true;
+                    cmdProcess.StartInfo.RedirectStandardOutput = true;
+                    cmdProcess.StartInfo.UseShellExecute = false;
+                    cmdProcess.StartInfo.CreateNoWindow = true;
+
+                    // Démarrage du processus
+                    cmdProcess.Start();
+
+                    // Obtention du flux d'entrée standard du processus
+                    StreamWriter sw = cmdProcess.StandardInput;
+
+                    // Exécution des commande CMD
+                    sw.WriteLine("mkdir "+currentUser[0]+"_"+currentUser[1]);
+
+                    // Je ferme le flux d'entrée standard et j'attend que le processus se termine
+                    sw.Close();
+                    cmdProcess.WaitForExit();
+
+                    // Je ferme le processus
+                    cmdProcess.Close();
+
+                    
+
+                    /* Console.WriteLine($"Date : {now.Day}/{now.Month}/{now.Year}");
+                    Console.WriteLine($"Heure : {now.Hour}:{now.Minute}"); */
+
+                    // currentUser[0] contient son nom et currentUser[1] son prénom et ensuite les infos en rapport avec la date, l'heure et les minutes
+                    cheminEnregistrement += currentUser[0] + "-" + currentUser[1] + "-" + now.Day + "-" + now.Month + "-" +now.Year + "-" + now.Hour + "-" + now.Minute + ".txt";
+
+                    // Enregistrement de sa commande dans le fichier texte - dans son répertoire
+                    FileWriter.logCommand(currentCommandList, prixTotalCommande, cheminEnregistrement);
+
+                }
+                else 
+                {
+                    Console.WriteLine("choix inconnu !");
+                }
+            }
+
+        }
+
+        public static string askUserIfHeWantsToCommand()
+        {
+            Console.Write("Voulez-vous passer commande ? (O: Oui / N: Non) : ");
+            string userResponse = Console.ReadLine();
+            Console.Read();
+            Console.WriteLine("Voici votre choix " + userResponse);
+            Console.Read();
+            return choix;
+        }
+
+        
 
         public static void checkValidateInfos(string n, string p, string a, string t)
         {
@@ -314,28 +544,78 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
         }
 
-        public static void connexion()
+        public static void connexionAdmin()
         {
             // Charger les informations depuis le fichier JSON
-            List<Administrateurs> admins = FileReader.LoadAdminsFromJson();
+            List<Administrateurs> adminstrateurs = FileReader.LoadAdminsFromJson();
 
             // admins.ForEach(a => Console.WriteLine("Login "+a.Login+" Password " + a.Password)); // admins est connu, et juste
             // Console.Read();
 
+
+
             Console.WriteLine("Entrez votre login : ");
-            string login = Console.ReadLine();
+            string loginConnexion = Console.ReadLine();
+            Console.Read();
             Console.Read();
 
             Console.WriteLine("Entrez votre mot de passe : ");
-            string password = Console.ReadLine();
+            string passwordConnexion = Console.ReadLine();
+            Console.Read();
             Console.Read();
 
-            // Vérifier les informations d'authentification
-            bool isAuthenticated = FileReader.AuthenticateAdmin(admins, login, password);
-            Console.WriteLine("isAuthenticated : "+ isAuthenticated);
+            // bool isAuthenticationSucced = false;
+
+            /* foreach (Administrateurs admin in adminstrateurs)
+            {
+                Console.WriteLine(admin.Login + " - " + admin.Password);
+            }
+            Console.Read(); */
+
+            FileReader.checkConnexionAdmin(adminstrateurs, loginConnexion, passwordConnexion);
+            FileReader.checkConnexionAdmin(adminstrateurs, loginConnexion, passwordConnexion);
             Console.Read();
+
+            
+            foreach (Administrateurs admin in adminstrateurs)
+            {
+                if (loginConnexion == admin.Login)
+                {
+                    Console.WriteLine("Le login renseigné est correct :)");
+                    Console.Read();
+                    if (passwordConnexion == admin.Password)
+                    {
+                        Console.WriteLine("Le password renseigné est correct :)");
+                        Console.Read();
+                        isAuthenticationSucced = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("le password renseigné ne correspond pas :(");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("le login renseigné est inconnu :(");
+                }
+            }
+            
+
+            if (isAuthenticationSucced)
+            {
+                Console.WriteLine("Félicitations, vous êtes parvenu à vous connecter en tant qu'Administrateur");
+            }
+            
+
+            // Vérifier les informations d'authentification - appel de la méthode AuthenticateAdmin() impossible
+            // AuthenticateAdmin(adminstrateurs, loginConnexion, passwordConnexion);
+            // bool isAuthenticated = FileReader.AuthenticateAdmin(admins, loginConnexion, passwordConnexion); // il ne veut pas appeler la méthode depuis FileReader
+            // bool isAuthenticated = AuthenticateAdmin(adminstrateurs, loginConnexion, passwordConnexion);
+            // Console.WriteLine("isAuthenticated : "+ isAuthenticated);
+            // Console.Read();
 
             // Afficher le résultat de l'authentification
+            /*
             if (isAuthenticated)
             {
                 Console.WriteLine("Authentification réussie !");
@@ -346,6 +626,15 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 Console.WriteLine("Échec de l'authentification. Vérifiez vos informations.");
                 Console.Read();
             }
+            */
+        }
+
+        public static bool AuthenticateAdmin(List<Administrateurs> admins, string login, string password)
+        {
+            Console.WriteLine("méthode AuthenticateAdmin()");
+            Console.Read();
+            // Je vérifie si les informations d'authentification correspondent à un administrateur présent dans la liste
+            return admins.Exists(a => a.Login == login && a.Password == password);
         }
     }
 }

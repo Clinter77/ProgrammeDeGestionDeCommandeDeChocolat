@@ -20,14 +20,14 @@ namespace ServicesLogs
         FileStream aFile;
         
         // sur mon poste chez-moi
-        static string filePath = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\logsFile.txt"; // path to file
-        static string filePathAdminsComptes = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesAdmins.json";
-        static string filePathUsersComptes = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesUsers.json";
+        // static string filePath = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\logsFile.txt"; // path to file
+        // static string filePathAdminsComptes = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesAdmins.json";
+        // static string filePathUsersComptes = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesUsers.json";
 
         // sur le PC Mewo
-        // static string filePath = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\logsFile.txt"; // path to file
-        // static string filePathAdminsComptes = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesAdmins.json";
-        // static string filePathUsersComptes = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesUsers.json";
+        static string filePath = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\logsFile.txt"; // path to file
+        static string filePathAdminsComptes = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesAdmins.json";
+        static string filePathUsersComptes = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat\ServicesLogs\comptesUsers.json";
 
         /// <summary>
         /// Méthode pour journaliser les différentes étapes dans dans le fichier logsFile.txt
@@ -169,6 +169,17 @@ namespace ServicesLogs
             {
                 Console.WriteLine("e\t" + e.Message);
             }
+        }
+
+        public static void LogArticleCommandToJournalFile(string str)
+        {
+            using (FileStream aFile = new FileStream(filePath, FileMode.Append, FileAccess.Write))
+            using (StreamWriter sw = new StreamWriter(aFile))
+            {
+                sw.WriteLine("******************************************************************************************************************");
+                sw.WriteLine(str);
+                sw.WriteLine("******************************************************************************************************************");
+            };
         }
     }
 }
