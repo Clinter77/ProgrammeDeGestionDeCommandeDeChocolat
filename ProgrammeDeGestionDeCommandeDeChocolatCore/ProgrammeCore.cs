@@ -73,6 +73,8 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         // demander à l'User d'abord de bien vouloir créer son compte
         public static void askAccountType()
         {
+            // création de l'Administrateur de l'application
+            createAdminAccount();
             Console.Clear();
             // Console.Read();
             Console.WriteLine("1: Utilisateur ");
@@ -150,12 +152,10 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     break;
                 case 2:
                     Console.WriteLine($"En ayant choisi la valeur {inputAccountTypeInt}, cela signifie que vous souhaitez vous connecter en tant qu'Administrateur dans cette application.");
-                    createAdminAccount();
                     connexionAdmin();
                     break;
                 default:
                     Console.WriteLine("Valeur inconnue au bataillon !");
-                   
                     askAccountType();
                     break;
             }
@@ -214,7 +214,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             if ((lgn.Length <= 2) || (lgn.Length > 15))
             {
                 Console.WriteLine("Le login (identifiant) renseigné ne respecte pas les consignes ! au moins trois caractères et ne pas dépasser les 15 caractères");
-                // createAdminAccount();
+                createAdminAccount();
             }
             else Console.WriteLine($"Voici votre identifiant de connexion (login) : {lgn}");
         }
@@ -321,7 +321,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             string userResponse = Console.ReadLine();
             userResponse = Console.ReadLine();
             Console.Read();
-            Console.Read();
             Console.WriteLine($"Voici votre choix {userResponse}");
             Console.Read();
             if ( (userResponse.Equals("O", StringComparison.OrdinalIgnoreCase)) || (userResponse=="O") || (userResponse=="o") )
@@ -370,26 +369,26 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             cmdProcess.Close();
 
             List<Articles> articles = FileReader.LoadArticlesFromJson();
-            
+
 
             Console.WriteLine("Saisissez F pour mettre Fin à la commande en cours ou bien poursuivez votre commande en sélectionnant les articles et leurs quantités au fur à mesure");
             Console.WriteLine("Voici les articles actuellement disponibles");
             Console.Read();
             foreach (Articles article in articles)
             {
-                Console.WriteLine("Référence : "+article.Reference+"\n\tPrix unitaire : "+article.Prix+ "\n\tQuantité actuellemet disponile en stock " + article.Quantite);
+                Console.WriteLine("Référence : " + article.Reference + "\n\tPrix unitaire : " + article.Prix + "\n\tQuantité actuellemet disponile en stock " + article.Quantite);
             }
             Console.Read();
             commandArticles();
             Console.ReadKey();
         }
 
-        
+
 
         public static void commandArticles()
         {
 
-            
+
 
             // je charge les articles depuis le fichier JSON
             List<Articles> articles = FileReader.LoadArticlesFromJson();
@@ -409,11 +408,11 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
             List<ArticlesAchetes> listeArticlesAchetes = new List<ArticlesAchetes>();
             List<Articles> currentCommandList = new List<Articles>();
-            
-            while ( (inputUser.ToString() != "F") || (inputUser.ToString() != "f") )
+
+            while ((inputUser.ToString() != "F") || (inputUser.ToString() != "f"))
             {
                 Console.WriteLine("Quel est votre choix d'article ?");
-                
+
                 inputUser = Console.ReadLine();
                 Console.Read();
                 // checkKeyTouch(inputUser);
@@ -422,7 +421,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 Console.WriteLine(inputUser.GetType());
                 Console.Read();
 
-                string[] numbersArray = {"0","1","2","3","4","5","6","7","8","9"};
+                string[] numbersArray = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
                 foreach (string n in numbersArray)
                 {
                     if (inputUser == n)
@@ -469,7 +468,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 }
             }
 
-            if ((inputUser == "F") || (inputUser == "f")) 
+            if ((inputUser == "F") || (inputUser == "f"))
             {
                 Console.WriteLine("Saisissez P si vous souhaitez connaître le prix de votre commande en cours\n ou V pour Visualiser votre commande");
                 inputUser = Console.ReadLine();
@@ -477,7 +476,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 if ((inputUser == "P") || (inputUser == "p"))
                 {
                     // l'User veut voir le prix de sa commande en cours
-                    Console.WriteLine("Prix de votre commande actuellement : "+ prixTotalCommande);
+                    Console.WriteLine("Prix de votre commande actuellement : " + prixTotalCommande);
                     Console.Read();
                 }
                 if ((inputUser == "V") || (inputUser == "v"))
@@ -487,13 +486,13 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     {
                         Console.WriteLine(articleAchete);
                         // exemple à suivre : 10/10/2023 Ajout d'un kinder 100g à 10h23 par Toto l'asticot
-                        ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de "+ currentCommandList[inputUserInt].Quantite + " pour l'article " + currentCommandList[inputUserInt].Reference + " à " + now.Hour+"h"+now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
+                        ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de " + currentCommandList[inputUserInt].Quantite + " pour l'article " + currentCommandList[inputUserInt].Reference + " à " + now.Hour + "h" + now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
                     }
                     Console.Read();
 
                     // chez-moi
                     string cheminEnregistrement = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
-                    
+
                     // poste MEWO
                     // string cheminEnregistrement = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
 
@@ -517,7 +516,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     StreamWriter sw = cmdProcess.StandardInput;
 
                     // Exécution des commande CMD
-                    sw.WriteLine("mkdir "+currentUser[0]+"_"+currentUser[1]);
+                    sw.WriteLine("mkdir " + currentUser[0] + "_" + currentUser[1]);
 
                     // Je ferme le flux d'entrée standard et j'attend que le processus se termine
                     sw.Close();
@@ -526,19 +525,19 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     // Je ferme le processus
                     cmdProcess.Close();
 
-                    
+
 
                     /* Console.WriteLine($"Date : {now.Day}/{now.Month}/{now.Year}");
                     Console.WriteLine($"Heure : {now.Hour}:{now.Minute}"); */
 
                     // currentUser[0] contient son nom et currentUser[1] son prénom et ensuite les infos en rapport avec la date, l'heure et les minutes
-                    cheminEnregistrement += currentUser[0] + "-" + currentUser[1] + "-" + now.Day + "-" + now.Month + "-" +now.Year + "-" + now.Hour + "-" + now.Minute + ".txt";
+                    cheminEnregistrement += currentUser[0] + "-" + currentUser[1] + "-" + now.Day + "-" + now.Month + "-" + now.Year + "-" + now.Hour + "-" + now.Minute + ".txt";
 
                     // Enregistrement de sa commande dans le fichier texte - dans son répertoire
                     FileWriter.logCommand(currentCommandList, prixTotalCommande, cheminEnregistrement);
 
                 }
-                else 
+                else
                 {
                     Console.WriteLine("choix inconnu !");
                 }
@@ -568,7 +567,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             return choix;
         }
 
-        
+
 
         public static void checkValidateInfos(string n, string p, string a, string t)
         {
@@ -606,16 +605,19 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         public static void connexionAdmin()
         {
             // Charger les informations depuis le fichier JSON
-            List<Administrateurs> adminstrateurs = FileReader.LoadAdminsFromJson();
+            List<Administrateurs> administrateurs = FileReader.LoadAdminsFromJson();
 
             // admins.ForEach(a => Console.WriteLine("Login "+a.Login+" Password " + a.Password)); // admins est connu, et juste
             // Console.Read();
-
+            foreach (Administrateurs admin in administrateurs)
+            {
+                Console.WriteLine(admin.Login + " " + admin.Password);
+            }
+            Console.Read();
 
 
             Console.WriteLine("Entrez votre login : ");
             string loginConnexion = Console.ReadLine();
-            Console.Read();
 
             Console.WriteLine("Entrez votre mot de passe : ");
             string passwordConnexion = Console.ReadLine();
@@ -632,17 +634,14 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             // FileReader.checkConnexionAdmin(adminstrateurs, loginConnexion, passwordConnexion);
 
 
-            
-            foreach (Administrateurs admin in adminstrateurs)
+            Console.WriteLine("Vérifications des identifiants de connexion");
+            foreach (Administrateurs admin in administrateurs)
             {
                 if (loginConnexion == admin.Login)
                 {
-                    Console.WriteLine("Le login renseigné est correct :)");
-                    Console.Read();
                     if (passwordConnexion == admin.Password)
                     {
-                        Console.WriteLine("Le password renseigné est correct :)");
-                        Console.Read();
+                        Console.WriteLine("Les login et password renseignés sont correct :)");
                         isAuthenticationSucced = true;
                     }
                     else
@@ -655,13 +654,14 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     Console.WriteLine("le login renseigné est inconnu :(");
                 }
             }
-            
+
 
             if (isAuthenticationSucced)
             {
                 Console.WriteLine("Félicitations, vous êtes parvenu à vous connecter en tant qu'Administrateur");
+                Console.Read();
             }
-            
+
 
             // Vérifier les informations d'authentification - appel de la méthode AuthenticateAdmin() impossible
             // AuthenticateAdmin(adminstrateurs, loginConnexion, passwordConnexion);
