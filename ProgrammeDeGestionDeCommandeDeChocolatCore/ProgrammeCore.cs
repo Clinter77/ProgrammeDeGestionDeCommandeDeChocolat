@@ -52,7 +52,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 Console.WriteLine($"ajout de {article.Quantite} unités pour l'article {article.Reference}, au prix unitaire de {article.Prix}");
             }
             Console.Read();
-            Console.Read();
             FileWriter.CreateTableaudArticles(tableaudArticles);
             ServicesLogs.ClassNLogJournalisation.LogArticlesContentsToJournalFile(tableaudArticles);
             // Console.Clear();
@@ -423,16 +422,16 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             if (typeof(string) == inputUser.GetType())
             {
                 Console.WriteLine("inputUser est de type string");
-                if ((inputUserInt.ToString() == "F") || (inputUserInt.ToString() == "f"))
+                if ((inputUser.ToString() == "F") || (inputUser.ToString() == "f"))
                 {
                     Console.WriteLine("En saisissant la lettre F, vous mettez Fin à la commande en cours");
                 }
-                if ((inputUserInt.ToString() == "P") || (inputUserInt.ToString() == "p"))
+                if ((inputUser.ToString() == "P") || (inputUser.ToString() == "p"))
                 {
                     Console.WriteLine("En saisissant la lettre P, vous souhaitez connaître le Prix de la commande en cours");
                     showCommandPrice();
                 }
-                if ((inputUserInt.ToString() == "V") || (inputUserInt.ToString() == "v"))    
+                if ((inputUser.ToString() == "V") || (inputUser.ToString() == "v"))    
                 {
                     Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
                     showCommand(listeArticlesAchetes, currentCommandList);
@@ -545,7 +544,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             if ((inputUserInt >= 0) && (inputUserInt < articles.Count))
             {
                 Console.WriteLine($"Vous souhaitez commander l'article : {articles[inputUserInt].Reference}");
-                Console.Read();
                 Console.WriteLine("Combien en voulez-vous ? ");
                 quantiteArticlesCommandesParUser = Console.ReadLine();
                 quantiteArticlesCommandesParUserInt = Convert.ToInt32(quantiteArticlesCommandesParUser);
@@ -569,7 +567,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             else
             {
                 Console.WriteLine("Choix d'article inconnu");
-                Console.Read();
             }
         }
 
@@ -583,7 +580,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 // exemple à suivre : 10/10/2023 Ajout d'un kinder 100g à 10h23 par Toto l'asticot
                 ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de " + currentCommandList[inputUserInt].Quantite + " pour l'article " + currentCommandList[inputUserInt].Reference + " à " + now.Hour + "h" + now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
             }
-            Console.Read();
 
             // chez-moi
             string cheminEnregistrement = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
@@ -650,7 +646,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             Console.WriteLine("\nTouche saisie : " + keyInfo.Key);
             Console.WriteLine("Modificateurs : " + keyInfo.Modifiers);
             Console.WriteLine("Caractère : " + keyInfo.KeyChar);
-            Console.Read();
         }
 
         public static string askUserIfHeWantsToCommand()
@@ -659,7 +654,6 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             string userResponse = Console.ReadLine();
             Console.Read();
             Console.WriteLine("Voici votre choix " + userResponse);
-            Console.Read();
             return choix;
         }
 
