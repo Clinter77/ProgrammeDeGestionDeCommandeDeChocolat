@@ -411,38 +411,43 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             inputUser = Console.ReadLine();
             Console.Read();
 
-            try
+            while ( (inputUser != "F") || (inputUser != "f") )
             {
-                inputUserInt = Convert.ToInt32(inputUser);
-                Console.WriteLine(inputUserInt + " de type " + inputUserInt.GetType());
-                Console.WriteLine("inputUser est de type int");
-                // donc l'User veut faire son choix d'articles, il souhaite passer commande
-                // checker inputUser pour que la valeur corresponde à un choix possible et ensuite créer la commande 
-                doCommand(articles, listeArticlesAchetes, currentCommandList, inputUser, inputUserInt);
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine(inputUser + " de type " + inputUser.GetType());
-                if (typeof(string) == inputUser.GetType())
+                try
                 {
-                    Console.WriteLine("inputUser est de type string");
-                    if ((inputUser.ToString() == "F") || (inputUser.ToString() == "f"))
-                    {
-                        Console.WriteLine("En saisissant la lettre F, vous mettez Fin à la commande en cours");
-                    }
-                    if ((inputUser.ToString() == "P") || (inputUser.ToString() == "p"))
-                    {
-                        Console.WriteLine("En saisissant la lettre P, vous souhaitez connaître le Prix de la commande en cours");
-                        showCommandPrice(prixTotalCommande);
-                    }
-                    if ((inputUser.ToString() == "V") || (inputUser.ToString() == "v"))
-                    {
-                        Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
-                        showCommand(listeArticlesAchetes, currentCommandList, inputUser);
-                    }
+                    inputUserInt = Convert.ToInt32(inputUser);
+                    Console.WriteLine(inputUserInt + " de type " + inputUserInt.GetType());
+                    Console.WriteLine("inputUser est de type int");
+                    // donc l'User veut faire son choix d'articles, il souhaite passer commande
+                    // checker inputUser pour que la valeur corresponde à un choix possible et ensuite créer la commande 
+                    doCommand(articles, listeArticlesAchetes, currentCommandList, inputUser, inputUserInt);
                 }
-                else Console.WriteLine("type inconnu");
+                catch (FormatException)
+                {
+                    Console.WriteLine(inputUser + " de type " + inputUser.GetType());
+                    if (typeof(string) == inputUser.GetType())
+                    {
+                        Console.WriteLine("inputUser est de type string");
+                        if ((inputUser.ToString() == "F") || (inputUser.ToString() == "f"))
+                        {
+                            Console.WriteLine("En saisissant la lettre F, vous mettez Fin à la commande en cours");
+                        }
+                        if ((inputUser.ToString() == "P") || (inputUser.ToString() == "p"))
+                        {
+                            Console.WriteLine("En saisissant la lettre P, vous souhaitez connaître le Prix de la commande en cours");
+                            showCommandPrice(prixTotalCommande);
+                        }
+                        if ((inputUser.ToString() == "V") || (inputUser.ToString() == "v"))
+                        {
+                            Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
+                            showCommand(listeArticlesAchetes, currentCommandList, inputUser);
+                        }
+                    }
+                    else Console.WriteLine("type inconnu");
+                }
             }
+
+            
             
 
 
