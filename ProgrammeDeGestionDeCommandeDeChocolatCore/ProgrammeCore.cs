@@ -32,6 +32,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         // static object inputUser = new object();
         static string quantiteArticlesCommandesParUser = "";
         static int quantiteArticlesCommandesParUserInt = 0;
+        public static float prixTotalCommande = 0F;
 
 
         // sur mon poste chez-moi
@@ -382,7 +383,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
         }
 
 
-        public static float prixTotalCommande = 0F;
+        
 
         public static void commandArticles()
         {
@@ -417,7 +418,8 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 Console.WriteLine("inputUser est de type int");
                 // donc l'User veut faire son choix d'articles, il souhaite passer commande
                 // checker inputUser pour que la valeur corresponde à un choix possible et ensuite créer la commande 
-                doCommand(articles, listeArticlesAchetes, currentCommandList);
+                inputUserInt = Convert.ToInt32(inputUser);
+                doCommand(articles, listeArticlesAchetes, currentCommandList, inputUser, inputUserInt);
             }
             if (typeof(string) == inputUser.GetType())
             {
@@ -429,12 +431,12 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 if ((inputUser.ToString() == "P") || (inputUser.ToString() == "p"))
                 {
                     Console.WriteLine("En saisissant la lettre P, vous souhaitez connaître le Prix de la commande en cours");
-                    showCommandPrice();
+                    showCommandPrice(prixTotalCommande);
                 }
                 if ((inputUser.ToString() == "V") || (inputUser.ToString() == "v"))    
                 {
                     Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
-                    showCommand(listeArticlesAchetes, currentCommandList);
+                    showCommand(listeArticlesAchetes, currentCommandList, inputUser);
                 }
             }
             else Console.WriteLine("type inconnu");
@@ -537,7 +539,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
         }
 
-        public static void doCommand(List<Articles> articles, List<ArticlesAchetes> listeArticlesAchetes, List<Articles> currentCommandList)
+        public static void doCommand(List<Articles> articles, List<ArticlesAchetes> listeArticlesAchetes, List<Articles> currentCommandList, string inputUser, int inputUserInt)
         {
             // Console.WriteLine(articles.Count); // 5 c'est bon
 
@@ -570,7 +572,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
         }
 
-        public static void showCommand(List<ArticlesAchetes> listeArticlesAchetes, List<Articles> currentCommandList)
+        public static void showCommand(List<ArticlesAchetes> listeArticlesAchetes, List<Articles> currentCommandList, string inputUser)
         {
             Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
             // l'User veut visualiser sa commande (généré dans un dossier à son nom et son nom de fichier doit avoir le format suivant "Nom-Prenom-Jour-Mois-Annee-Heure-Minute.txt"
@@ -631,7 +633,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
 
 
-        public static void showCommandPrice()
+        public static void showCommandPrice(float prixTotalCommande)
         {
             // l'User veut voir le prix de sa commande en cours
             Console.WriteLine("Prix de votre commande actuellement : " + prixTotalCommande);
