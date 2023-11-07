@@ -593,3 +593,168 @@ ajout de l'administrateur ayant pour login ChristopheAdmin et pour password Chri
 ******************************************************************************************************************
 ajout de l'utilisateur ayant pour nom Totonom prénom Totoprénom adresse 157 avenue des Totos 57000 Metz et numéro de téléphone 0123456789
 ******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 07/11/2023 14:35:41
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 07/11/2023 14:35:41
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 07/11/2023 14:35:43
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom nomTest prénom prénomTest adresse 36 Boulevard des Tests et numéro de téléphone 0123456789
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 07/11/2023 14:36:28
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 07/11/2023 14:36:34
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 07/11/2023 14:36:34
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 07/11/2023 14:36:35
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom nomTest prénom prénomTest adresse 24 Avenue des Tests et numéro de téléphone 123456789
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 07/11/2023 14:37:09
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 07/11/2023 14:39:40
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 07/11/2023 14:39:40
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 07/11/2023 14:39:41
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom nomtest prénom prénomtest adresse 1 et numéro de téléphone 123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 07/11/2023 14:40:06
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 07/11/2023 14:40:18
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 07/11/2023 14:40:18
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 07/11/2023 14:40:19
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom nom prénom prénom adresse 123 rue et numéro de téléphone 123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 07/11/2023 14:40:50
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape de démarrage de l'application - 07/11/2023 14:45:04
+******************************************************************************************************************
+
+
+******************************************************************************************************************
+Etape d'initialisation des articles en base de données (ajout des articles) dans le fichier - 07/11/2023 14:45:04
+******************************************************************************************************************
+
+ajout de 50 unités pour l'article Ferrero rocher - boîte de 16 chocolats, au prix unitaire de 2,83
+ajout de 50 unités pour l'article Jeff De Bruges - boîte ronde de 26 chocolats assortis, au prix unitaire de 39,35
+ajout de 50 unités pour l'article Lindt - Connaisseurs - boîte de 217 grammes d'assortiment de chocolats, au prix unitaire de 8,09
+ajout de 50 unités pour l'article Lindt - Lindor - boîte de 200 grammes d'assortiment de chocolats, au prix unitaire de 3,91
+ajout de 50 unités pour l'article Kinder Bueno - boîte de 10 unités, au prix unitaire de 6,59
+
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de choix de profil de compte - 07/11/2023 14:45:06
+******************************************************************************************************************
+
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'administrateur ayant pour login ChristopheAdmin et pour password ChristophePassword@123
+******************************************************************************************************************
+ajout de l'utilisateur ayant pour nom nom prénom prénom adresse boulevard et numéro de téléphone 123
+******************************************************************************************************************
+
+******************************************************************************************************************
+Etape de connexion - 07/11/2023 14:45:38
+******************************************************************************************************************
+

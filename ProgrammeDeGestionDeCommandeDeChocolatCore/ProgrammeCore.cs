@@ -409,7 +409,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             Console.WriteLine("Quel est votre choix d'article ? ");
             Console.WriteLine("Saisissez la valeur correspondante à l'article ");
             inputUser = Console.ReadLine();
-            Console.Read();
+            // Console.Read();
 
 
             Console.WriteLine(inputUser+" de type "+inputUser.GetType());
@@ -418,6 +418,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 Console.WriteLine("inputUser est de type int");
                 // donc l'User veut faire son choix d'articles, il souhaite passer commande
                 // checker inputUser pour que la valeur corresponde à un choix possible et ensuite créer la commande 
+                doCommand(articles, listeArticlesAchetes, currentCommandList);
             }
             if (typeof(string) == inputUser.GetType())
             {
@@ -537,6 +538,41 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
         }
 
+        public static void doCommand(List<Articles> articles, List<ArticlesAchetes> listeArticlesAchetes, List<Articles> currentCommandList)
+        {
+            // Console.WriteLine(articles.Count); // 5 c'est bon
+
+            if ((inputUserInt >= 0) && (inputUserInt < articles.Count))
+            {
+                Console.WriteLine($"Vous souhaitez commander l'article : {articles[inputUserInt].Reference}");
+                Console.Read();
+                Console.WriteLine("Combien en voulez-vous ? ");
+                quantiteArticlesCommandesParUser = Console.ReadLine();
+                quantiteArticlesCommandesParUserInt = Convert.ToInt32(quantiteArticlesCommandesParUser);
+                if (quantiteArticlesCommandesParUserInt <= articles[inputUserInt].Quantite)
+                {
+                    ArticlesAchetes articlesAchete = new ArticlesAchetes(articles[inputUserInt].Id, quantiteArticlesCommandesParUserInt);
+                    // ajout à la liste de sa commande
+                    listeArticlesAchetes.Add(articlesAchete);
+                    currentCommandList.Add(new Articles(articles[inputUserInt].Reference, articles[inputUserInt].Prix, quantiteArticlesCommandesParUserInt));
+
+                    // Utilisation du Setter pour mettre à jour la quantité
+                    articles[inputUserInt].Quantite -= quantiteArticlesCommandesParUserInt;
+
+                    // Enregistrement des modifications dans le fichier JSON
+                    FileWriter.SaveArticlesToJson(articles);
+
+                    // mettre à jour le prix de sa commande en cours
+                    prixTotalCommande += articles[inputUserInt].Prix * quantiteArticlesCommandesParUserInt;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Choix d'article inconnu");
+                Console.Read();
+            }
+        }
+
         public static void showCommand(List<ArticlesAchetes> listeArticlesAchetes, List<Articles> currentCommandList)
         {
             Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
@@ -601,12 +637,8 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
         public static void showCommandPrice()
         {
-            if ((inputUser == "P") || (inputUser == "p"))
-            {
-                // l'User veut voir le prix de sa commande en cours
-                Console.WriteLine("Prix de votre commande actuellement : " + prixTotalCommande);
-                Console.Read();
-            }
+            // l'User veut voir le prix de sa commande en cours
+            Console.WriteLine("Prix de votre commande actuellement : " + prixTotalCommande);
         }
 
         public static void checkKeyTouch(object keyTouch)
