@@ -416,30 +416,13 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             if (typeof(int) == inputUser.GetType())
             {
                 Console.WriteLine("inputUser est de type int");
-                // donc l'User veut faire son choix d'articles, il souhaite passer commande
-                // checker inputUser pour que la valeur corresponde à un choix possible et ensuite créer la commande 
             }
             if (typeof(string) == inputUser.GetType())
             {
                 Console.WriteLine("inputUser est de type string");
-                if ((inputUserInt.ToString() == "F") || (inputUserInt.ToString() == "f"))
-                {
-                    Console.WriteLine("En saisissant la lettre F, vous mettez Fin à la commande en cours");
-                }
-                if ((inputUserInt.ToString() == "P") || (inputUserInt.ToString() == "p"))
-                {
-                    Console.WriteLine("En saisissant la lettre P, vous souhaitez connaître le Prix de la commande en cours");
-                    showCommandPrice();
-                }
-                if ((inputUserInt.ToString() == "V") || (inputUserInt.ToString() == "v"))    
-                {
-                    Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
-                    showCommand(listeArticlesAchetes, currentCommandList);
-                }
             }
             else Console.WriteLine("type inconnu");
 
-            /* 
             try
             {
                 Console.WriteLine();
@@ -470,10 +453,9 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             {
                 Console.WriteLine("Le nombre saisi est trop grand ou trop petit pour être représenté en tant qu'entier.");
             }
-            */
 
 
-            /* 
+
             while ((inputUser.ToString() != "F") || (inputUser.ToString() != "f"))
             {
                 // Console.WriteLine("Quel est votre choix d'article ?");
@@ -497,7 +479,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                     }
                 }
                 */
-            /*
+
                 // je m'assure que inputUserInt est bien de type int
                 if (typeof(int) == inputUserInt.GetType())
                 {
@@ -533,71 +515,84 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                         Console.Read();
                     }
                 }
-            } */
-
-        }
-
-        public static void showCommand(List<ArticlesAchetes> listeArticlesAchetes, List<Articles> currentCommandList)
-        {
-            Console.WriteLine("En saisissant la lettre V, vous souhaitez Visualiser la commande en cours");
-            // l'User veut visualiser sa commande (généré dans un dossier à son nom et son nom de fichier doit avoir le format suivant "Nom-Prenom-Jour-Mois-Annee-Heure-Minute.txt"
-            foreach (ArticlesAchetes articleAchete in listeArticlesAchetes)
-            {
-                Console.WriteLine(articleAchete);
-                // exemple à suivre : 10/10/2023 Ajout d'un kinder 100g à 10h23 par Toto l'asticot
-                ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de " + currentCommandList[inputUserInt].Quantite + " pour l'article " + currentCommandList[inputUserInt].Reference + " à " + now.Hour + "h" + now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
             }
-            Console.Read();
 
-            // chez-moi
-            string cheminEnregistrement = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
+            if ((inputUser == "F") || (inputUser == "f"))
+            {
+                Console.WriteLine("Saisissez P si vous souhaitez connaître le prix de votre commande en cours ou V pour Visualiser votre commande");
+                inputUser = Console.ReadLine();
+                Console.Read();
+                /* if ((inputUser == "P") || (inputUser == "p"))
+                {
+                    // l'User veut voir le prix de sa commande en cours
+                    Console.WriteLine("Prix de votre commande actuellement : " + prixTotalCommande);
+                    Console.Read();
+                } */
+                if ((inputUser == "V") || (inputUser == "v"))
+                {
+                    // l'User veut visualiser sa commande (généré dans un dossier à son nom et son nom de fichier doit avoir le format suivant "Nom-Prenom-Jour-Mois-Annee-Heure-Minute.txt"
+                    foreach (ArticlesAchetes articleAchete in listeArticlesAchetes)
+                    {
+                        Console.WriteLine(articleAchete);
+                        // exemple à suivre : 10/10/2023 Ajout d'un kinder 100g à 10h23 par Toto l'asticot
+                        ClassNLogJournalisation.LogArticleCommandToJournalFile(now.Day + "/" + now.Month + "/" + now.Year + " Ajout de " + currentCommandList[inputUserInt].Quantite + " pour l'article " + currentCommandList[inputUserInt].Reference + " à " + now.Hour + "h" + now.Minute + " par " + currentUser[0] + " " + currentUser[1]);
+                    }
+                    Console.Read();
 
-            // poste MEWO
-            // string cheminEnregistrement = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
+                    // chez-moi
+                    string cheminEnregistrement = @"F:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
 
-            // Création d'une nouvelle instance du processus CMD (Command Prompt)
-            Process cmdProcess = new Process();
+                    // poste MEWO
+                    // string cheminEnregistrement = @"C:\Users\Christophe.DESKTOP-EMFR2GT\source\repos\ProgrammeDeGestionDeCommandeDeChocolat";
 
-            // Configuration de ses propriétés
-            cmdProcess.StartInfo.FileName = "cmd.exe";
-            cmdProcess.StartInfo.WorkingDirectory = cheminEnregistrement;
+                    // Création d'une nouvelle instance du processus CMD (Command Prompt)
+                    Process cmdProcess = new Process();
 
-            // J'indique que je souhaite rediriger la sortie standard
-            cmdProcess.StartInfo.RedirectStandardInput = true;
-            cmdProcess.StartInfo.RedirectStandardOutput = true;
-            cmdProcess.StartInfo.UseShellExecute = false;
-            cmdProcess.StartInfo.CreateNoWindow = true;
+                    // Configuration de ses propriétés
+                    cmdProcess.StartInfo.FileName = "cmd.exe";
+                    cmdProcess.StartInfo.WorkingDirectory = cheminEnregistrement;
 
-            // Démarrage du processus
-            cmdProcess.Start();
+                    // J'indique que je souhaite rediriger la sortie standard
+                    cmdProcess.StartInfo.RedirectStandardInput = true;
+                    cmdProcess.StartInfo.RedirectStandardOutput = true;
+                    cmdProcess.StartInfo.UseShellExecute = false;
+                    cmdProcess.StartInfo.CreateNoWindow = true;
 
-            // Obtention du flux d'entrée standard du processus
-            StreamWriter sw = cmdProcess.StandardInput;
+                    // Démarrage du processus
+                    cmdProcess.Start();
 
-            // Exécution des commande CMD
-            sw.WriteLine("mkdir " + currentUser[0] + "_" + currentUser[1]);
+                    // Obtention du flux d'entrée standard du processus
+                    StreamWriter sw = cmdProcess.StandardInput;
 
-            // Je ferme le flux d'entrée standard et j'attend que le processus se termine
-            sw.Close();
-            cmdProcess.WaitForExit();
+                    // Exécution des commande CMD
+                    sw.WriteLine("mkdir " + currentUser[0] + "_" + currentUser[1]);
 
-            // Je ferme le processus
-            cmdProcess.Close();
+                    // Je ferme le flux d'entrée standard et j'attend que le processus se termine
+                    sw.Close();
+                    cmdProcess.WaitForExit();
+
+                    // Je ferme le processus
+                    cmdProcess.Close();
 
 
 
-            /* Console.WriteLine($"Date : {now.Day}/{now.Month}/{now.Year}");
-            Console.WriteLine($"Heure : {now.Hour}:{now.Minute}"); */
+                    /* Console.WriteLine($"Date : {now.Day}/{now.Month}/{now.Year}");
+                    Console.WriteLine($"Heure : {now.Hour}:{now.Minute}"); */
 
-            // currentUser[0] contient son nom et currentUser[1] son prénom et ensuite les infos en rapport avec la date, l'heure et les minutes
-            cheminEnregistrement += currentUser[0] + "-" + currentUser[1] + "-" + now.Day + "-" + now.Month + "-" + now.Year + "-" + now.Hour + "-" + now.Minute + ".txt";
+                    // currentUser[0] contient son nom et currentUser[1] son prénom et ensuite les infos en rapport avec la date, l'heure et les minutes
+                    cheminEnregistrement += currentUser[0] + "-" + currentUser[1] + "-" + now.Day + "-" + now.Month + "-" + now.Year + "-" + now.Hour + "-" + now.Minute + ".txt";
 
-            // Enregistrement de sa commande dans le fichier texte - dans son répertoire
-            FileWriter.logCommand(currentCommandList, prixTotalCommande, cheminEnregistrement);
+                    // Enregistrement de sa commande dans le fichier texte - dans son répertoire
+                    FileWriter.logCommand(currentCommandList, prixTotalCommande, cheminEnregistrement);
+
+                }
+                else
+                {
+                    Console.WriteLine("choix inconnu !");
+                }
+            }
 
         }
-
-
 
         public static void showCommandPrice()
         {
@@ -631,6 +626,8 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             return choix;
         }
 
+
+
         public static void checkValidateInfos(string n, string p, string a, string t)
         {
             if ((n == "") || (p == "") || (a == "") || (t == ""))
@@ -663,6 +660,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
         }
 
+
         public static void connexionAdmin()
         {
             // Charger les informations depuis le fichier JSON
@@ -676,6 +674,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             }
             Console.Read();
 
+
             Console.WriteLine("Entrez votre login : ");
             string loginConnexion = Console.ReadLine();
 
@@ -684,11 +683,13 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
             Console.Read();
 
             // bool isAuthenticationSucced = false;
+
             /* foreach (Administrateurs admin in adminstrateurs)
             {
                 Console.WriteLine(admin.Login + " - " + admin.Password);
             }
             Console.Read(); */
+
             // FileReader.checkConnexionAdmin(adminstrateurs, loginConnexion, passwordConnexion);
 
 
@@ -713,11 +714,34 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 }
             }
 
+
             if (isAuthenticationSucced)
             {
                 Console.WriteLine("Félicitations, vous êtes parvenu à vous connecter en tant qu'Administrateur");
                 Console.Read();
             }
+
+
+            // Vérifier les informations d'authentification - appel de la méthode AuthenticateAdmin() impossible
+            // AuthenticateAdmin(adminstrateurs, loginConnexion, passwordConnexion);
+            // bool isAuthenticated = FileReader.AuthenticateAdmin(admins, loginConnexion, passwordConnexion); // il ne veut pas appeler la méthode depuis FileReader
+            // bool isAuthenticated = AuthenticateAdmin(adminstrateurs, loginConnexion, passwordConnexion);
+            // Console.WriteLine("isAuthenticated : "+ isAuthenticated);
+            // Console.Read();
+
+            // Afficher le résultat de l'authentification
+            /*
+            if (isAuthenticated)
+            {
+                Console.WriteLine("Authentification réussie !");
+                Console.Read();
+            }
+            else
+            {
+                Console.WriteLine("Échec de l'authentification. Vérifiez vos informations.");
+                Console.Read();
+            }
+            */
         }
 
         public static bool AuthenticateAdmin(List<Administrateurs> admins, string login, string password)
