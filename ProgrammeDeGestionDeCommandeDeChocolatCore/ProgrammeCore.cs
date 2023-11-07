@@ -416,6 +416,7 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
                 try
                 {
                     inputUserInt = Convert.ToInt32(inputUser);
+                    // Console.Read();
                     Console.WriteLine(inputUserInt + " de type " + inputUserInt.GetType());
                     Console.WriteLine("inputUser est de type int");
                     // donc l'User veut faire son choix d'articles, il souhaite passer commande
@@ -557,10 +558,16 @@ namespace ProgrammeDeGestionDeCommandeDeChocolatCore
 
             if ((inputUserInt >= 0) && (inputUserInt < articles.Count))
             {
+
+                Console.Read();
                 Console.WriteLine($"Vous souhaitez commander l'article : {articles[inputUserInt].Reference}");
                 Console.WriteLine("Combien en voulez-vous ? ");
-                quantiteArticlesCommandesParUser = Console.ReadLine();
+                string quantiteArticlesCommandesParUser = Console.ReadLine();
+                Console.Read();
+                Console.WriteLine("quantiteArticlesCommandesParUser : "+ quantiteArticlesCommandesParUser + " et de type " + quantiteArticlesCommandesParUser.GetType());
+                
                 quantiteArticlesCommandesParUserInt = Convert.ToInt32(quantiteArticlesCommandesParUser);
+                Console.WriteLine("quantiteArticlesCommandesParUserInt : " + quantiteArticlesCommandesParUserInt + " et de type " + quantiteArticlesCommandesParUserInt.GetType());
                 if (quantiteArticlesCommandesParUserInt <= articles[inputUserInt].Quantite)
                 {
                     ArticlesAchetes articlesAchete = new ArticlesAchetes(articles[inputUserInt].Id, quantiteArticlesCommandesParUserInt);
